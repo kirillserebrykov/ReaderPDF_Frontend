@@ -1,0 +1,59 @@
+.cards{
+    background:url("https://s1.livelib.ru/boocover/1002110803/200x305/bce2/boocover.jpg") no-repeat;
+    width: 200px;
+    height: 300px;
+    position: relative;
+    z-index: 1;
+    transform: translate(-10px,10px);
+    -webkit-transform: translate(-10px,10px);
+    -moz-transform: translate(-10px,10px);
+    -ms-transform: translate(-10px,10px);
+    -o-transform: translate(-10px,10px);
+    transition: 250ms;
+    -webkit-transition: 250ms;
+    -moz-transition: 250ms;
+    -ms-transition: 250ms;
+    -o-transition: 250ms;
+}
+
+
+
+
+.cards:hover{
+    transition: 250ms;
+    -webkit-transition: 250ms;
+    -moz-transition: 250ms;
+    -ms-transition: 250ms;
+    -o-transition: 250ms;
+    transform: translate(0px,0);
+    -webkit-transform: translate(0px,0);
+    -moz-transform: translate(0px,0);
+    -ms-transform: translate(0px,0);
+    -o-transform: translate(0px,0);
+    cursor: pointer;
+}
+.cardsBack{
+    width: 200px;
+    height: 300px;
+    background-color: #2D2828;
+}
+.tags{
+    width: 100%;
+    height: 40px;
+    background-color: #000000d0;
+    transform: translate(0px,-40px);
+    -webkit-transform: translate(0px,-40px);
+    -moz-transform: translate(0px,-40px);
+    -ms-transform: translate(0px,-40px);
+    -o-transform: translate(0px,-40px);
+    position: relative;
+    z-index: 2;
+    border-radius: 10px 10px 0px 0px;
+    -webkit-border-radius: 10px 10px 0px 0px;
+    -moz-border-radius: 10px 10px 0px 0px;
+    -ms-border-radius: 10px 10px 0px 0px;
+    -o-border-radius: 10px 10px 0px 0px;
+    filter:blur(3px);
+    -webkit-filter:blur(3px);
+}
+
