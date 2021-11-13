@@ -1,0 +1,22 @@
+.errorWrraper{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-top: 40px;
+   
+    
+}
+
+.errorText{
+    font-weight: 700;
+    font-size: 34px;
+    padding-bottom: 10px;
+}
+
+.refreshButton{
+position: fixed;
+left: 0;
+bottom: 0;
+}
