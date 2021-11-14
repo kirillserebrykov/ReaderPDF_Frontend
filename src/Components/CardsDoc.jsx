@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom'
 import "./Card.css"
 
 
 const CardsDoc = (props) => {
-    return <div className="cardsBack">
+    const navigate = useNavigate();
+
+    return <div onClick={() => navigate(`/Book/${props.filename}`)} className="cardsBack">
         <div className="cards"></div>  
     </div>
 }

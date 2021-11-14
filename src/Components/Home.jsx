@@ -5,31 +5,51 @@ import style from "./Header.module.css"
 import { IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
-const Home = () => {
+import LinearProgress from '@mui/material/LinearProgress';
+import Error from './Error';
+
+
+
+const MarkUpHome = (Cards, isLoading) => {
     return (
         <>
-            <Header name="Библиотека" />
+        {isLoading && <LinearProgress color="inherit" />}
             <section className={style.wrraperHome}>
-                <CardsDoc />
-                <CardsDoc />
-                <CardsDoc />
-                <CardsDoc />
-                <CardsDoc />
+                {Cards && Cards}
             </section>
             <nav className={style.WrraperButton}>
                 <div className={style.ButtonsBackground}>
-                    <IconButton className={style.ButtonAdd} color="success" sx={{with: "80px",height: "80px"}}  >
+                    <IconButton className={style.ButtonAdd} color="success" sx={{ with: "80px", height: "80px" }}  >
                         <AddIcon fontSize="large" color="success" />
                     </IconButton>
                 </div>
                 <div className={style.ButtonsBackground}>
-                    <IconButton className={style.ButtonAdd} sx={{with: "80px",height: "80px"}}  >
-                        <DeleteIcon fontSize="large"  />
+                    <IconButton className={style.ButtonAdd} sx={{ with: "80px", height: "80px" }}  >
+                        <DeleteIcon fontSize="large" />
                     </IconButton>
                 </div>
             </nav>
         </>
     )
+}
+
+
+
+const Home = ({ dataCatalog, isLoading, error }) => {
+
+    const Cards = dataCatalog && dataCatalog.map(el => {
+        return <div key={el._id} >
+            <CardsDoc filename={el.filename} />
+        </div>
+    })
+
+    return <>
+        <Header name="Библиотека" back_button={false} />
+        {error ? <Error  error={error}  /> : MarkUpHome(Cards, isLoading)}
+    </>
+
+
+
 }
 
 export default Home

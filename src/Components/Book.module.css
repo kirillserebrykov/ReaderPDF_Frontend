@@ -1,0 +1,26 @@
+.wrraperBook{
+    display: flex;
+    flex-direction: row;
+    margin-left: 70px;
+    margin-top: 20px;
+}
+
+.cover img{
+    min-width: 300px;
+}
+.description{
+    margin-left: 40px;
+}
+.descriptionText {
+    width: 500px;
+    padding-bottom: 30px;
+}
+.descriptionTitle{
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.readButton{
+    width: 300px;
+   
+}

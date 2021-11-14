@@ -1,18 +1,17 @@
-import { Routes, Route, Link } from "react-router-dom";
-import React ,{ useState } from 'react'
+import { Routes, Route } from "react-router-dom";
+import React  from 'react'
 import './App.css';
-import Home from './Components/Home'
-
+import HomeContainer from './Components/HomeContainer'
+import BookContainer from './Components/BookContainer'
+import ReadContainer from './Components/ReadContainer'
 
 const App = () => {
-
-  return (
-    <div className="App">
-    <Routes>
-      <Route path="/" element={<Home />} />
-    </Routes>
-  </div>
-  );
+  
+  return  <Routes>
+            <Route path="/" element={ <HomeContainer /> } />
+            <Route path="/Book/*" element={ <BookContainer/> } />
+            <Route path="/Read/*" element={ <ReadContainer/> } />
+        </Routes>
 }
 //
 export default App;
