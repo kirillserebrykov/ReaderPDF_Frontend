@@ -75,24 +75,10 @@ select {
 
 .react-pdf__Page__svg{
 
-  opacity: 0   !important
+  opacity: 1   !important
 }
 .react-pdf__Page__textContent{
-  display: inline-block !important;
-  color: #000 !important;
-  font-size: 50px !important;
-  transform: scale(1.5) !important;
-  -webkit-transform: scale(1.5) !important;
-  -moz-transform: scale(1.5) !important;
-  -ms-transform: scale(1.5) !important;
-  -o-transform: scale(1.5) !important;
-  top: 120px !important;
-  left: 0 !important;
-  transform:translate(-50%,-50%);
-  -webkit-transform:translate(-50%,-50%);
-  -moz-transform:translate(-50%,-50%);
-  -ms-transform:translate(-50%,-50%);
-  -o-transform:translate(-50%,-50%);
+
 }
 .react-pdf__Page__textContent span{
   

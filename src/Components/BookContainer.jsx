@@ -1,8 +1,9 @@
 import React from 'react'
 import Book from './Book';
-import { useGetCatalogQuery } from '../store/data-layer-level/getCatalog'
+import { useGetBookInfoQuery } from '../store/data-layer-level/getCatalog'
 const BookContainer = () => {
-    const { data, error, isLoading } = useGetCatalogQuery()
+    const filename = window.location.pathname.replace("/Book/", '')
+    const { data, error, isLoading } = useGetBookInfoQuery(filename)
     const InfoBook = data ? data[0] : "isFeathing"
     
     return <Book InfoBook = {InfoBook} />

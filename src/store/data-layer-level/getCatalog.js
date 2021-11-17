@@ -11,11 +11,14 @@ export const GetCatalogApi = createApi({
         query: () => `/BooksAll`,
       }),
       GetBookForReading: builder.query({
-        query: (fileName) => `Books?fileName=${fileName}`,
+        query: (fileName) => `BooksForRead?fileName=${fileName}`,
+      }),
+      GetBookInfo: builder.query({
+        query: (fileName) => `BookInfo?fileName=${fileName}`,
       }),
     }),
   }) 
 
 
 
-export const { useGetCatalogQuery,useGetBookForReadingQuery, usePrefetch } = GetCatalogApi
+export const { useGetCatalogQuery,useGetBookForReadingQuery,useGetBookInfoQuery, usePrefetch } = GetCatalogApi

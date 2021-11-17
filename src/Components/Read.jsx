@@ -13,25 +13,23 @@ const renderSkeleton = () => {
 }
 
 const ReadMarkUp = (myBuffer,pageNumber,onDocumentLoadSuccess,handleChange,numPages) => {
-  
-
 
   return <section className={style.WrraperdocumentPageForRead} >
-    <div className={style.Wrraperdocument}>
-      <Document className={style.Document}
-        file={myBuffer && { data: myBuffer }}
-        renderMode={"none"}
-        onLoadSuccess={onDocumentLoadSuccess}
-        options={{
-          cMapUrl: `//cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
-          cMapPacked: false,
-        }}
-        loading={renderSkeleton}
-      >
-        <Page pageNumber={pageNumber} renderMode={"svg"} loading={renderSkeleton} />
-      </Document>
-    </div>
-    <Pagination sx={{ position: "fixed", left: "50%", bottom: "10px", transform: "translate(-50%,0%)" }} count={numPages} page={pageNumber} onChange={handleChange} />
+            <div className={style.Wrraperdocument}>
+                <Document className={style.Document}
+                    file={myBuffer && { data: myBuffer }}
+                    renderMode={"none"}
+                    onLoadSuccess={onDocumentLoadSuccess}
+                    options={{
+                      cMapUrl: `//cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
+                      cMapPacked: false,
+                    }}
+                    loading={renderSkeleton}
+                  >
+                    <Page pageNumber={pageNumber} renderMode={"canvas"} loading={renderSkeleton} />
+                </Document>
+            </div>
+            <Pagination sx={{ position: "fixed", left: "50%", bottom: "10px", transform: "translate(-50%,0%)" }} count={numPages} page={pageNumber} onChange={handleChange} />
   </section>
 }
 
@@ -43,26 +41,29 @@ const ReadMarkUp = (myBuffer,pageNumber,onDocumentLoadSuccess,handleChange,numPa
 
 
 
-const Read = ({ data, isLoading }) => {
+const Read = ({FileBase64, isLoading}) => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-
+  const [isLoadingFile, setisLoadingFile] = useState(1);
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
   }
   const handleChange = (event, value) => {
     setPageNumber(value)
   }
-  console.log(isLoading)
-  const myBuffer = data && Buffer.from(data[0], 'base64');
-
-  //{isLoading && <Skeleton variant="rectangular" width={210} height={118} />}
   
-
-
+  
+  //const FileUnit8Array =  FileBase64 && Buffer.from(FileBase64[0], 'base64');
+  const FileUnit8ArrayF =  async() =>{
+    return await FileBase64 && Buffer.from(FileBase64[0], 'base64')
+  }
+  console.log(FileUnit8ArrayF())
     return <>
-      {isLoading ?  renderSkeleton :   ReadMarkUp(myBuffer,pageNumber,onDocumentLoadSuccess,handleChange,numPages) }
-    </>
+              {isLoading  ?
+                          renderSkeleton :
+                          ReadMarkUp(FileUnit8ArrayF, pageNumber, onDocumentLoadSuccess, handleChange, numPages)
+              }
+          </>
     
 }
 
