@@ -5,8 +5,20 @@ import { pdfjs } from 'react-pdf';
 import style from './DocumentRead.module.css';
 import Pagination from '@mui/material/Pagination';
 import Skeleton from '@mui/material/Skeleton';
+import worker from '../worker';
 
+function add2NumbersUsingWebWorker() {
+  const myWorker = new Worker(worker);  
 
+  myWorker.postMessage([42, 7]);
+  console.log('Message posted to worker');
+
+  myWorker.onmessage = function(e) {
+      console.log( e.data);
+  }
+}
+
+add2NumbersUsingWebWorker();
 
 const renderSkeleton = () => {
   return <Skeleton variant="rectangular" width={434} height={636} />
@@ -54,14 +66,14 @@ const Read = ({FileBase64, isLoading}) => {
   
   
   //const FileUnit8Array =  FileBase64 && Buffer.from(FileBase64[0], 'base64');
-  const FileUnit8ArrayF =  async() =>{
-    return await FileBase64 && Buffer.from(FileBase64[0], 'base64')
+  const FileUnit8ArrayF =  () =>{
+    return ""  //FileBase64 && Buffer.from(FileBase64[0], 'base64')
   }
-  console.log(FileUnit8ArrayF())
+
     return <>
               {isLoading  ?
                           renderSkeleton :
-                          ReadMarkUp(FileUnit8ArrayF, pageNumber, onDocumentLoadSuccess, handleChange, numPages)
+                          ReadMarkUp(FileUnit8ArrayF(), pageNumber, onDocumentLoadSuccess, handleChange, numPages)
               }
           </>
     
