@@ -1,24 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Page } from 'react-pdf';
 import { Document } from 'react-pdf/dist/esm/entry.webpack';
 import { pdfjs } from 'react-pdf';
 import style from './DocumentRead.module.css';
 import Pagination from '@mui/material/Pagination';
 import Skeleton from '@mui/material/Skeleton';
-import worker from '../worker';
-
-function add2NumbersUsingWebWorker() {
-  const myWorker = new Worker(worker);  
-
-  myWorker.postMessage([42, 7]);
-  console.log('Message posted to worker');
-
-  myWorker.onmessage = function(e) {
-      console.log( e.data);
-  }
-}
-
-add2NumbersUsingWebWorker();
+import { useWebworker } from '../useWebworker'
 
 const renderSkeleton = () => {
   return <Skeleton variant="rectangular" width={434} height={636} />
@@ -51,31 +38,33 @@ const ReadMarkUp = (myBuffer,pageNumber,onDocumentLoadSuccess,handleChange,numPa
 
 
 
-
-
 const Read = ({FileBase64, isLoading}) => {
-  const [numPages, setNumPages] = useState(null);
+  const [numPages, setNumPages] = useState(0);
   const [pageNumber, setPageNumber] = useState(1);
-  const [isLoadingFile, setisLoadingFile] = useState(1);
+ // const [isLoadingFile, setisLoadingFile] = useState(1);
+  
+  const {result, error, runWebworker} = useWebworker((FileBase64) => FileBase64)
+  
+  useEffect( () => {
+     runWebworker(FileBase64 && FileBase64)
+  },[FileBase64]);
+ 
+  
+
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
   }
   const handleChange = (event, value) => {
     setPageNumber(value)
   }
-  
-  
-  //const FileUnit8Array =  FileBase64 && Buffer.from(FileBase64[0], 'base64');
-  const FileUnit8ArrayF =  () =>{
-    return ""  //FileBase64 && Buffer.from(FileBase64[0], 'base64')
-  }
 
-    return <>
-              {isLoading  ?
+    return <div>
+              {error && renderSkeleton}
+              {isLoading || !result ?
                           renderSkeleton :
-                          ReadMarkUp(FileUnit8ArrayF(), pageNumber, onDocumentLoadSuccess, handleChange, numPages)
+                          ReadMarkUp(  result && result  , pageNumber, onDocumentLoadSuccess, handleChange, numPages)
               }
-          </>
+          </div>
     
 }
 
