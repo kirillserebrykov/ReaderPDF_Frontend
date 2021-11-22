@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import appReducer from './appSlice'
 import { setupListeners } from '@reduxjs/toolkit/query/react'
-import { GetCatalogApi } from './data-layer-level/getCatalog'
+import { getRequestsAPI } from './data-layer-level/getRequests'
 export const store = configureStore({
   reducer: {
     appReducer : appReducer,
-    [GetCatalogApi.reducerPath]: GetCatalogApi.reducer,
+    [getRequestsAPI.reducerPath]: getRequestsAPI.reducer,
    },
    middleware: (getDefaultMiddleware) =>
-   getDefaultMiddleware().concat(GetCatalogApi.middleware),
+   getDefaultMiddleware().concat(getRequestsAPI.middleware),
 })
 
 setupListeners(store.dispatch)

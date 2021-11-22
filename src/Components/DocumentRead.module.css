@@ -5,4 +5,22 @@
     flex-direction:row
     
 }
-
+.wrraperPagination{
+    position: fixed;
+    left: 18%;
+    bottom: 0px;
+    width: 400px;
+    background-color: #ffff;
+    transform:translate(-50%,0);
+    -webkit-transform:translate(-50%,0);
+    -moz-transform:translate(-50%,0);
+    -ms-transform:translate(-50%,0);
+    -o-transform:translate(-50%,0);
+    border: 2px solid rgb(59, 56, 56);
+    border-radius: 10px 10px 0px 0px;
+    border-bottom: none;
+    -webkit-border-radius: 10px 10px 0px 0px;
+    -moz-border-radius: 10px 10px 0px 0px;
+    -ms-border-radius: 10px 10px 0px 0px;
+    -o-border-radius: 10px 10px 0px 0px;
+}

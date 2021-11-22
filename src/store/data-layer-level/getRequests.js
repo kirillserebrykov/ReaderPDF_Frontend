@@ -1,9 +1,8 @@
 import { createApi, fetchBaseQuery  } from '@reduxjs/toolkit/query/react'
-
 const BASE_URL = "http://127.0.0.1:5000"
 
-export const GetCatalogApi = createApi({
-    reducerPath: 'GetCatalogApi',
+export const getRequestsAPI = createApi({
+    reducerPath: 'getRequestsAPI',
     tagTypes: ['Get'],  
     baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
     endpoints: (builder) => ({
@@ -21,4 +20,4 @@ export const GetCatalogApi = createApi({
 
 
 
-export const { useGetCatalogQuery,useGetBookForReadingQuery,useGetBookInfoQuery, usePrefetch } = GetCatalogApi
+export const { useGetCatalogQuery,useGetBookForReadingQuery,useGetBookInfoQuery, usePrefetch } = getRequestsAPI
