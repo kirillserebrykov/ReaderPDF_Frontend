@@ -5,30 +5,33 @@ import { pdfjs } from 'react-pdf';
 import style from './DocumentRead.module.css';
 import Pagination from '@mui/material/Pagination';
 import Skeleton from '@mui/material/Skeleton';
-import { useWebworker } from '../useWebworker'
+import { useWebworkerBase64ToUnit8Array } from '../useWebworker'
 
 const renderSkeleton = () => {
   return <Skeleton variant="rectangular" width={434} height={636} />
 }
 
-const ReadMarkUp = (myBuffer,pageNumber,onDocumentLoadSuccess,handleChange,numPages) => {
+const ReadMarkUp = (myBuffer, pageNumber, onDocumentLoadSuccess, handleChange, numPages) => {
 
   return <section className={style.WrraperdocumentPageForRead} >
-            <div className={style.Wrraperdocument}>
-                <Document className={style.Document}
-                    file={myBuffer && { data: myBuffer }}
-                    renderMode={"none"}
-                    onLoadSuccess={onDocumentLoadSuccess}
-                    options={{
-                      cMapUrl: `//cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
-                      cMapPacked: false,
-                    }}
-                    loading={renderSkeleton}
-                  >
-                    <Page pageNumber={pageNumber} renderMode={"canvas"} loading={renderSkeleton} />
-                </Document>
-            </div>
-            <Pagination sx={{ position: "fixed", left: "50%", bottom: "10px", transform: "translate(-50%,0%)" }} count={numPages} page={pageNumber} onChange={handleChange} />
+    <div className={style.Wrraperdocument}>
+      <Document className={style.Document}
+        file={myBuffer && { data: myBuffer }}
+        renderMode={"none"}
+        onLoadSuccess={onDocumentLoadSuccess}
+        options={{
+          cMapUrl: `//cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
+          cMapPacked: false,
+        }}
+        loading={renderSkeleton}
+      >
+        <Page pageNumber={pageNumber} renderMode={"canvas"} loading={renderSkeleton} />
+      </Document>
+    </div>
+
+    {numPages > 1 && <div className={style.wrraperPagination}>
+      <Pagination count={numPages} page={pageNumber} onChange={handleChange} />
+    </div>}
   </section>
 }
 
@@ -38,34 +41,33 @@ const ReadMarkUp = (myBuffer,pageNumber,onDocumentLoadSuccess,handleChange,numPa
 
 
 
-const Read = ({FileBase64, isLoading}) => {
+const Read = ({ FileBase64, isLoading }) => {
   const [numPages, setNumPages] = useState(0);
   const [pageNumber, setPageNumber] = useState(1);
- // const [isLoadingFile, setisLoadingFile] = useState(1);
-  
-  const {result, error, runWebworker} = useWebworker((FileBase64) => FileBase64)
-  
-  useEffect( () => {
-     runWebworker(FileBase64 && FileBase64)
-  },[FileBase64]);
- 
-  
+  const { resultWorkWorker, error, runWebworker } = useWebworkerBase64ToUnit8Array((FileBase64) => FileBase64)
+
+
+  useEffect(() => {
+    runWebworker(FileBase64 && FileBase64)
+  }, [FileBase64]);
+
+
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
   }
-  const handleChange = (event, value) => {
+  const handleChangePage = (event, value) => {
     setPageNumber(value)
   }
 
-    return <div>
-              {error && renderSkeleton}
-              {isLoading || !result ?
-                          renderSkeleton :
-                          ReadMarkUp(  result && result  , pageNumber, onDocumentLoadSuccess, handleChange, numPages)
-              }
-          </div>
-    
+  return <div>
+    {error && renderSkeleton}
+    {isLoading || !resultWorkWorker ?
+      renderSkeleton :
+      ReadMarkUp(resultWorkWorker && resultWorkWorker, pageNumber, onDocumentLoadSuccess, handleChangePage, numPages)
+    }
+  </div>
+
 }
 
 
