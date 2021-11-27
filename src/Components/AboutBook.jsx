@@ -6,13 +6,13 @@ import Button from '@mui/material/Button';
 import Error from './Error';
 import LinearProgress from '@mui/material/LinearProgress';
 
-const BookUI = (metadata, rederectHendler, Name, isLoading) => {
+const BookUI = ({metadata, RederectToReadBook, Name, isLoading}) => {
     return <>
     {isLoading ? <Header name={Name ? Name : "Загрузка..."} back_button={true} /> : <Header name={Name ? Name : "Ошибка"} back_button={true} />}
     {!isLoading ?  <section className={style.wrraperBook}>
                 <div className={style.cover}>
                     <img src="https://s1.livelib.ru/boocover/1002110803/200x305/bce2/boocover.jpg" alt="" />
-                    <Button className={style.readButton} onClick={rederectHendler} color="success" variant="outlined">Читать</Button>
+                    <Button className={style.readButton} onClick={RederectToReadBook} color="success" variant="outlined">Читать</Button>
             </div>
              <article className={style.description}>
                 <h2 className={style.descriptionTitle} >Автор: {metadata && metadata.author}</h2>
@@ -44,9 +44,10 @@ const AboutBook = ({ InfoBook, error, isLoading, filename, refreshHandlerName })
                             page="документ"
                             refreshHandlerName={refreshHandlerName}
                             filename={filename}  
+                            isLoading={isLoading}
                     /> 
                 </>
-                : BookUI(metadata, RederectToReadBook,Name,isLoading)  
+                : <BookUI metadata={metadata} RederectToReadBook={RederectToReadBook} Name={Name} isLoading={isLoading} />
                 }
             </>
 }

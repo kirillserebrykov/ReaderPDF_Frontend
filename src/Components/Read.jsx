@@ -33,13 +33,9 @@ const ReadMarkUp = ({resultWorkWorker, pageNumber, onDocumentLoadSuccess, handle
       </Document>
     </div>
 
-    {numPages > 1 &&  <PaginationComponent pageNumber={pageNumber} numPages={numPages} handleChangePage={handleChangePage}  />  }
-    <IconButton sx={{padding:0,color:"rgb(33,33,33)"}}  aria-label="upload picture" component="span">
-            <KeyboardArrowDownIcon  />
-          </IconButton>
-          <IconButton sx={{padding:0,color:"rgb(33,33,33)"}}  aria-label="upload picture" component="span">
-            <KeyboardArrowDownIcon  />
-          </IconButton>
+    {numPages > 1 &&  <PaginationComponent pageNumber={pageNumber} numPages={numPages} handleChangePage={handleChangePage}  /> 
+     }
+     
      
   </section>
   

@@ -13,11 +13,12 @@ export const getRequestsAPI = createApi({
         query: (fileName) => `BooksForRead?fileName=${fileName}`,
       }),
       GetBookInfo: builder.query({
+        
         query: (fileName) => `BookInfo?fileName=${fileName}`,
       }),
     }),
   }) 
 
-
+ 
 
 export const { useGetCatalogQuery,useGetBookForReadingQuery,useGetBookInfoQuery, usePrefetch } = getRequestsAPI

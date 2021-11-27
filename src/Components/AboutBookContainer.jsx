@@ -8,7 +8,7 @@ const AboutBookContainer = () => {
     const InfoBook = data ? data[0] : "isFeathing"
     const refreshHandlerName = "GetBookInfo"
     return <AboutBook InfoBook = {InfoBook}  error={error} filename={filename} refreshHandlerName={refreshHandlerName}  isLoading={isLoading} />
-}
+}   
 
 
 export default AboutBookContainer
