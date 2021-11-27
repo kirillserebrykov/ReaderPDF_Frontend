@@ -32,6 +32,7 @@
     -o-transition:1s ;
 }
 .wrraperPaginationHide{
+    width: 400px;
     transition:1s;
     -webkit-transition:1s;
     -moz-transition:1s;
@@ -49,5 +50,19 @@
     -moz-transform:translate(-50%,0);
     -ms-transform:translate(-50%,0);
     -o-transform:translate(-50%,0);
+    border: 2px solid rgb(59, 56, 56);
 }
 
+.paginationVisibleButton{
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 66% !important;
+    
+}
+.fdsfds{
+    transform:rotate(180deg);
+    -webkit-transform:rotate(180deg);
+    -moz-transform:rotate(180deg);
+    -ms-transform:rotate(180deg);
+    -o-transform:rotate(180deg);
+}
