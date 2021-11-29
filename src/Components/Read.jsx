@@ -6,39 +6,41 @@ import style from './DocumentRead.module.css';
 import PaginationComponent from './Pagination';
 import Skeleton from '@mui/material/Skeleton';
 import { useWebworkerBase64ToUnit8Array } from '../useWebworker'
-import IconButton from '@mui/material/IconButton';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const renderSkeleton = () => {
+const RenderSkeleton = () => {
   return <Skeleton variant="rectangular" width={434} height={636} />
 
 }
 
-const ReadMarkUp = ({resultWorkWorker, pageNumber, onDocumentLoadSuccess, handleChangePage, numPages}) => {
-  
-  //const [isPaginationVisible, setIsPaginationVisible] = useState(null);
-  
-  return <section  className={style.WrraperdocumentPageForRead}>
-    <div className={style.Wrraperdocument}>
+const ReadUI = ({ resultWorkWorker, currentPage, onDocumentLoadSuccess, handleChangePage, totalPages }) => {
+
+
+
+  return <main className={style.WrraperdocumentPageForRead}>
+    <section className={style.Wrraperdocument}>
       <Document className={style.Document}
         file={resultWorkWorker && { data: resultWorkWorker }}
         renderMode={"none"}
-        onLoadSuccess= { onDocumentLoadSuccess &&  onDocumentLoadSuccess }
+        onLoadSuccess={onDocumentLoadSuccess && onDocumentLoadSuccess}
         options={{
           cMapUrl: `//cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
           cMapPacked: false,
         }}
-        loading={renderSkeleton}
+        loading={<RenderSkeleton /> }
       >
-        <Page pageNumber={pageNumber} renderMode={"canvas"} loading={renderSkeleton} />
+        <Page pageNumber={currentPage} renderMode={"canvas"} loading={<RenderSkeleton /> } />
       </Document>
-    </div>
+    </section>
 
-    {numPages > 1 &&  <PaginationComponent pageNumber={pageNumber} numPages={numPages} handleChangePage={handleChangePage}  /> 
-     }
-     
-     
-  </section>
-  
+    {totalPages > 0 && 
+    <nav>
+        <PaginationComponent currentPage={currentPage} totalPages={totalPages} handleChangePage={handleChangePage} />
+        
+    </nav>
+    }
+
+
+  </main>
+
 }
 
 
@@ -48,30 +50,22 @@ const ReadMarkUp = ({resultWorkWorker, pageNumber, onDocumentLoadSuccess, handle
 
 
 const Read = ({ FileBase64, isLoading }) => {
-  const [numPages, setNumPages] = useState(0);
-  const [pageNumber, setPageNumber] = useState(1);
-  
-  const {resultWorkWorker, errorWorker, runWebworker } = useWebworkerBase64ToUnit8Array((FileBase64) => FileBase64)
-  
-  useEffect(() => {
-    runWebworker(FileBase64 && FileBase64)
-  },[FileBase64]);
+  const [totalPages, setNumPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const { resultWorkWorker, errorWorker, runWebworker } = useWebworkerBase64ToUnit8Array((FileBase64) => FileBase64)
 
-  
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
-  }
-  const handleChangePage = (event, value) => {
-    setPageNumber(value)
-  }
+  useEffect(() => { runWebworker(FileBase64 && FileBase64) }, [FileBase64]);
 
-  return <section>
-          {errorWorker && renderSkeleton}
-          {isLoading || !resultWorkWorker ?
-            renderSkeleton :
-            <ReadMarkUp resultWorkWorker ={resultWorkWorker}  pageNumber={pageNumber} onDocumentLoadSuccess={onDocumentLoadSuccess} handleChangePage={handleChangePage} numPages={numPages} />
-          }
-    </section>
+  const onDocumentLoadSuccess = ({ numPages }) => setNumPages(numPages)
+  const handleChangePage = (event, value) => setCurrentPage(value)
+
+  return <>
+    {errorWorker && <RenderSkeleton /> }
+    {isLoading || !resultWorkWorker ?
+      <RenderSkeleton /> :
+      <ReadUI resultWorkWorker={resultWorkWorker} currentPage={currentPage} onDocumentLoadSuccess={onDocumentLoadSuccess} handleChangePage={handleChangePage} totalPages={totalPages} />
+    }
+  </>
 
 }
 

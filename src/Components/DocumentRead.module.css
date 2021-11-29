@@ -11,7 +11,6 @@
     position: fixed;
     left: 50%;
     bottom: 0px;
-    width: 400px;
     background-color: #ffff;
     transform:translate(-50%,0);
     -webkit-transform:translate(-50%,0);
@@ -25,20 +24,19 @@
     -moz-border-radius: 10px 10px 0px 0px;
     -ms-border-radius: 10px 10px 0px 0px;
     -o-border-radius: 10px 10px 0px 0px;
-    transition:1s ;
-    -webkit-transition:1s ;
-    -moz-transition:1s ;
-    -ms-transition:1s ;
-    -o-transition:1s ;
+    transition: 1s;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
 }
 .wrraperPaginationHide{
-    width: 400px;
     transition:1s;
     -webkit-transition:1s;
     -moz-transition:1s;
     -ms-transition:1s;
     -o-transition:1s;
-    left: 50%;      
+    left: 50%;
     position: fixed;
     opacity: 0;
     display: flex;
@@ -55,14 +53,30 @@
 
 .paginationVisibleButton{
     position: fixed !important;
-    bottom: 0 !important;
-    left: 66% !important;
+    bottom: 10px !important;
+    right: 30px !important;
+    transition: 250ms !important;
+    -webkit-transition: 250ms !important;
+    -moz-transition: 250ms !important;
+    -ms-transition: 250ms !important;
+    -o-transition: 250ms !important;
+    opacity: 1;
+    display: block;
+    background-color: black;
     
 }
-.fdsfds{
-    transform:rotate(180deg);
-    -webkit-transform:rotate(180deg);
-    -moz-transform:rotate(180deg);
-    -ms-transform:rotate(180deg);
-    -o-transform:rotate(180deg);
+
+.paginationUnVisibleButton{
+    position: fixed !important;
+    bottom: 10px !important;
+    right: 30px !important;
+    transition: 250ms !important;
+    -webkit-transition: 250ms !important;
+    -moz-transition: 250ms !important;
+    -ms-transition: 250ms !important;
+    -o-transition: 250ms !important;
+    opacity: 0;
+    display: none;
 }
+
+

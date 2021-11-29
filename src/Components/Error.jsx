@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import style from './error.module.css';
-import Button from '@mui/material/Button';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Alert from '@mui/material/Alert';
 import { usePrefetch } from '../store/data-layer-level/getRequests'
