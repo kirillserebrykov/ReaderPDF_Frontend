@@ -79,4 +79,8 @@
     display: none;
 }
 
-
+.PaginationHideButton{
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
+}

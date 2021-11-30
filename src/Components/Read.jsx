@@ -6,8 +6,10 @@ import style from './DocumentRead.module.css';
 import PaginationComponent from './Pagination';
 import Skeleton from '@mui/material/Skeleton';
 import { useWebworkerBase64ToUnit8Array } from '../useWebworker'
+import CurrentPage from './CurrentPage';
+import LoadingBigData from './LoadingBigData';
 const RenderSkeleton = () => {
-  return <Skeleton variant="rectangular" width={434} height={636} />
+  return <Skeleton  variant="rectangular" width={434} height={636} />
 
 }
 
@@ -34,7 +36,7 @@ const ReadUI = ({ resultWorkWorker, currentPage, onDocumentLoadSuccess, handleCh
     {totalPages > 0 && 
     <nav>
         <PaginationComponent currentPage={currentPage} totalPages={totalPages} handleChangePage={handleChangePage} />
-        
+        <CurrentPage currentPage={currentPage} totalPages={totalPages}/>
     </nav>
     }
 
@@ -60,9 +62,9 @@ const Read = ({ FileBase64, isLoading }) => {
   const handleChangePage = (event, value) => setCurrentPage(value)
 
   return <>
-    {errorWorker && <RenderSkeleton /> }
+    {errorWorker &&  <RenderSkeleton /> }
     {isLoading || !resultWorkWorker ?
-      <RenderSkeleton /> :
+      <LoadingBigData />  :
       <ReadUI resultWorkWorker={resultWorkWorker} currentPage={currentPage} onDocumentLoadSuccess={onDocumentLoadSuccess} handleChangePage={handleChangePage} totalPages={totalPages} />
     }
   </>
