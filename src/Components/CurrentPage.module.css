@@ -12,40 +12,39 @@
     min-width: 40px;
     min-height: 40px;
     border: 2px solid rgb(59, 56, 56);
-    border-radius: 0px 0px 10px 10px ;
-    -webkit-border-radius: 0px 0px 10px 10px ;
-    -moz-border-radius: 0px 0px 10px 10px ;
-    -ms-border-radius: 0px 0px 10px 10px ;
-    -o-border-radius: 0px 0px 10px 10px ;
-    
-    
+    border-radius: 0px 0px 0px 10px ;
+    -webkit-border-radius: 0px 0px 0px 10px ;
+    -moz-border-radius: 0px 0px 0px 10px ;
+    -ms-border-radius: 0px 0px 0px 10px ;
+    -o-border-radius: 0px 0px 0px 10px ;
 }
-.currentPageText{
+
+.totalPageWraper {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: -2px;
+    left: 0px;
+    min-width: 40px;
+    min-height: 40px;
+    border: 2px solid rgb(59, 56, 56);
+    border-radius: 0px 0px 10px 0px ;
+    -webkit-border-radius: 0px 0px 10px 0px ;
+    -moz-border-radius: 0px 0px 10px 0px ;
+    -ms-border-radius: 0px 0px 10px 0px ;
+    -o-border-radius: 0px 0px 10px 0px ;
+}
+
+
+.infoPageText{
     padding: 10px;
     padding-right: 10px;
+    
    
 }
 
 
-.totalPageText{
-    padding-left: 0;
-    padding-right: 10px;
-    display: block;
-    opacity: 1;
-    transition: 1s;
-    -webkit-transition: 1s;
-    -moz-transition: 1s;
-    -ms-transition: 1s;
-    -o-transition: 1s;
-    
-}
 
-.totalPageTextHide{
-    display: none;
-    opacity: 0;
-    transition: 1s;
-    -webkit-transition: 1s;
-    -moz-transition: 1s;
-    -ms-transition: 1s;
-    -o-transition: 1s;
-}

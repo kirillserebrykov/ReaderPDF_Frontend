@@ -12,13 +12,17 @@ const PaginationComponent = ({ currentPage, handleChangePage, totalPages }) => {
     return <>
                 <div className={PaginationVisibility ? style.wrraperPagination : style.wrraperPaginationHide}>
                     <Pagination count={totalPages} sx={{"&&" : {flexWrap: "nowrap"}}}  page={currentPage} className={style.pagination} onChange={handleChangePage} />
-                    <IconButton sx={{ padding: 0, color: "rgb(33,33,33)", paddingRight: "25px" }} onClick={() => { Set_Pagination_Invisibility() }} aria-label="upload picture" component="span">
+                    <div className={style.PaginationHideButton} >
+                        <IconButton  sx={{padding:0, color: "rgb(33,33,33)",  }} onClick={() => { Set_Pagination_Invisibility() }} aria-label="upload picture" component="span">
+                            <KeyboardArrowDownIcon />
+                        </IconButton>
+                    </div>
+                </div>
+                
+                    <IconButton className={PaginationVisibility ? style.paginationUnVisibleButton : style.paginationVisibleButton} sx={{ padding: 0, color: "rgb(33,33,33)", transform: "rotate(180deg)" }} onClick={() => { Set_Pagination_Visibility() }} aria-label="upload picture" component="span">
                         <KeyboardArrowDownIcon />
                     </IconButton>
-                </div>
-                <IconButton className={PaginationVisibility ? style.paginationUnVisibleButton : style.paginationVisibleButton} sx={{ padding: 0, color: "rgb(33,33,33)", transform: "rotate(180deg)" }} onClick={() => { Set_Pagination_Visibility() }} aria-label="upload picture" component="span">
-                    <KeyboardArrowDownIcon />
-                </IconButton>
+                
             </>
 
 }

@@ -8,6 +8,7 @@ import Skeleton from '@mui/material/Skeleton';
 import { useWebworkerBase64ToUnit8Array } from '../useWebworker'
 import CurrentPage from './CurrentPage';
 import LoadingBigData from './LoadingBigData';
+import {NavigationPage} from "./PageNavigation"
 const RenderSkeleton = () => {
   return <Skeleton  variant="rectangular" width={434} height={636} />
 
@@ -33,14 +34,14 @@ const ReadUI = ({ resultWorkWorker, currentPage, onDocumentLoadSuccess, handleCh
       </Document>
     </section>
 
-    {totalPages > 0 && 
+    {totalPages > 1 && 
     <nav>
-        <PaginationComponent currentPage={currentPage} totalPages={totalPages} handleChangePage={handleChangePage} />
+       { <PaginationComponent currentPage={currentPage} totalPages={totalPages} handleChangePage={handleChangePage} />}
         <CurrentPage currentPage={currentPage} totalPages={totalPages}/>
-    </nav>
-    }
-
-
+          <NavigationPage direction = "right" handleChangePage = {handleChangePage}  currentPage = {currentPage} totalPages = {totalPages}/>
+          <NavigationPage direction = "left"  handleChangePage = {handleChangePage}  currentPage = {currentPage} totalPages = {totalPages}/>
+    </nav>}
+    
   </main>
 
 }
@@ -54,9 +55,12 @@ const ReadUI = ({ resultWorkWorker, currentPage, onDocumentLoadSuccess, handleCh
 const Read = ({ FileBase64, isLoading }) => {
   const [totalPages, setNumPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const { resultWorkWorker, errorWorker, runWebworker } = useWebworkerBase64ToUnit8Array((FileBase64) => FileBase64)
+  const { resultWorkWorker, errorWorker, runWebworker,  } = useWebworkerBase64ToUnit8Array((FileBase64) => FileBase64)
 
-  useEffect(() => { runWebworker(FileBase64 && FileBase64) }, [FileBase64]);
+  useEffect(() => { 
+    runWebworker(FileBase64 && FileBase64)
+     
+   }, [FileBase64]);
 
   const onDocumentLoadSuccess = ({ numPages }) => setNumPages(numPages)
   const handleChangePage = (event, value) => setCurrentPage(value)

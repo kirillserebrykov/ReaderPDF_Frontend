@@ -2,6 +2,7 @@ import { useState } from 'react'
 const workerHandler = (fn) => {
   onmessage = (event) => {
     postMessage(fn(event.data))
+    
   }}
 
 
@@ -15,10 +16,12 @@ const workerHandler = (fn) => {
   export const useWebworkerBase64ToUnit8Array = (fn) => {
     const [resultWorkWorker, setResultWorkWorker] = useState(null)
     const [errorWorker, setErrorWorker] = useState(null)
+    
     const runWebworker = (value) => {
-     const worker = new Worker(
+      const worker = new Worker(
         URL.createObjectURL(new Blob([`(${workerHandler})(${fn})`]))
-      )
+        )
+      
       worker.onmessage = (event) => {
         const file = event.data && getFileBase64(event)
         const buffer = file && Base64toUnit8Array(file)
@@ -28,11 +31,13 @@ const workerHandler = (fn) => {
       worker.onerror = (error) => {
         setErrorWorker(error.message)
         worker.terminate()
+        
       }
       worker.postMessage(value)
     }
   
     return {
+      
       resultWorkWorker,
       errorWorker,
       runWebworker,

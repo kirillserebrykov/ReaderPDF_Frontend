@@ -1,13 +1,16 @@
-import React, { useState }from 'react'
+import React, { useState } from 'react'
 import style from './CurrentPage.module.css';
 
-const CurrentPage = ({currentPage, totalPages}) => {
-    const [hoverInfoPage, setHoverInfoPage] = useState(false)
-    console.log(hoverInfoPage   )
-    return <div onMouseEnter={ () => setHoverInfoPage(true)} onMouseLeave={ () => setHoverInfoPage(false)} className={style.currentPageWraper}>
-                <span className={style.currentPageText}>{currentPage} стр.</span>
-                <span className={hoverInfoPage ?   style.totalPageText : style.totalPageTextHide}>{totalPages} стр.</span>
-        </div>
+const CurrentPage = ({ currentPage,  totalPages}) => {
+        return <>
+                <div className={style.currentPageWraper}>
+                        <span className={style.infoPageText}>{currentPage} стр.</span>
+                </div>
+                <div className={style.totalPageWraper} > 
+                        <span className={style.infoPageText}>{totalPages} стр.</span>
+                </div>
+        </>
 }
 
 export default CurrentPage
+
