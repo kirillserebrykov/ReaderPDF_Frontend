@@ -1,14 +1,16 @@
-import React, { useState, useEffect, } from 'react'
+import React, { useState, useEffect} from 'react'
 import { Page } from 'react-pdf';
 import { Document } from 'react-pdf/dist/esm/entry.webpack';
 import { pdfjs } from 'react-pdf';
 import style from './DocumentRead.module.css';
-import PaginationComponent from './Pagination';
+import PaginationComponent from './Pagination/Pagination';
 import Skeleton from '@mui/material/Skeleton';
-import { useWebworkerBase64ToUnit8Array } from '../useWebworker'
-import CurrentPage from './CurrentPage';
-import LoadingBigData from './LoadingBigData';
-import {NavigationPage} from "./PageNavigation"
+import { useWebworkerBase64ToUnit8Array } from '../../useWebworker'
+import CurrentPage from './CurrentPage/CurrentPage';
+import LoadingBigData from '../Loading/LoadingBigData';
+import {NavigationPage} from "./PageNavigation/PageNavigation"
+
+
 const RenderSkeleton = () => {
   return <Skeleton  variant="rectangular" width={434} height={636} />
 

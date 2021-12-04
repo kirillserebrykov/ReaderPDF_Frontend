@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from './Home';
-import { useGetCatalogQuery } from '../store/data-layer-level/getRequests'
+import { useGetCatalogQuery } from '../../store/data-layer-level/getRequests'
 
 const HomeContainer = () => {
     const { data, error, isLoading } = useGetCatalogQuery()

@@ -1,7 +1,7 @@
 import React from 'react'
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import style from './DocumentRead.module.css';
+import style from './PageNavigation.module.css';
 
 
 export const NavigationPage = ({direction, handleChangePage, currentPage, totalPages}) => {

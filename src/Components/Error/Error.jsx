@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import style from './error.module.css';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Alert from '@mui/material/Alert';
-import { usePrefetch } from '../store/data-layer-level/getRequests'
+import { usePrefetch } from '../../store/data-layer-level/getRequests'
 const styleAlert = { position: "fixed", left: "0", bottom: "0" }
 
 

@@ -2,7 +2,7 @@ import React, {useState } from 'react'
 import IconButton from '@mui/material/IconButton';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Pagination from '@mui/material/Pagination';
-import style from './DocumentRead.module.css';
+import style from './Pagination.module.css';
 const PaginationComponent = ({ currentPage, handleChangePage, totalPages }) => {
 
     const [PaginationVisibility, setPaginationVisibility] = useState(true)

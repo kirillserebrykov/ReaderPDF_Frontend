@@ -1,13 +1,12 @@
 import React from 'react';
-import Header from './Header';
-import CardsDoc from './CardsDoc';
-import style from "./Header.module.css"
+import Header from '../Header/Header';
+import CardsDoc from './Card/CardsDoc';
+import style from "../Header/Header.module.css"
 import { IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import LinearProgress from '@mui/material/LinearProgress';
-import Error from './Error';
-
+import Error from '../Error/Error';
 
 
 const MarkUpHome = ({ dataCatalog, isLoading }) => {

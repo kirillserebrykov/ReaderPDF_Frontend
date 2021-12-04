@@ -1,6 +1,6 @@
 import React from 'react'
 import Read from './Read';
-import { useGetBookForReadingQuery } from '../store/data-layer-level/getRequests'
+import { useGetBookForReadingQuery } from '../../store/data-layer-level/getRequests'
 const ReadContainer = () => {
     const filename = window.location.pathname.replace("/Read/", '')
     const { data, error, isLoading } = useGetBookForReadingQuery(filename)

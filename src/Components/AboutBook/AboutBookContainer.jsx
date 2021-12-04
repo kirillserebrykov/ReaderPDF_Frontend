@@ -1,6 +1,6 @@
 import React from 'react'
 import AboutBook from './AboutBook';
-import { useGetBookInfoQuery } from '../store/data-layer-level/getRequests'
+import { useGetBookInfoQuery } from '../../store/data-layer-level/getRequests'
 
 const AboutBookContainer = () => {
     const filename = window.location.pathname.replace("/Book/", '')

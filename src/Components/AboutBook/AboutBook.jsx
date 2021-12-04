@@ -1,9 +1,9 @@
 import React from 'react'
-import Header from './Header';
+import Header from '../Header/Header';
 import { useNavigate } from 'react-router-dom';
 import style from './Book.module.css';
 import Button from '@mui/material/Button';
-import Error from './Error';
+import Error from '../Error/Error';
 import LinearProgress from '@mui/material/LinearProgress';
 
 const BookUI = ({metadata, RederectToReadBook, Name, isLoading}) => {
