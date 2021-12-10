@@ -71,5 +71,14 @@ self.addEventListener('message', (event) => {
 console.clear()
 // Any other custom service worker logic can go here.
 self.addEventListener("fetch", e =>{
-  console.log(e)
+  e.respondWith(
+    caches.open('mysite-dynamic').then(function(cache) {
+      return cache.match(e.request).then(function (response) {
+        return response || fetch(e.request).then(function(response) {
+          cache.put(e.request, response.clone());
+          return response;
+        });
+      });
+    })
+  )
 })
