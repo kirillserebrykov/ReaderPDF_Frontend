@@ -8,7 +8,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 
 const BookUI = ({metadata, RederectToReadBook, Name, isLoading}) => {
     return <>
-    {isLoading ? <Header name={Name ? Name : "Загрузка..."} back_button={true} /> : <Header name={Name ? Name : "Ошибка"} back_button={true} />}
+    {isLoading  ? <Header name={Name ? Name : "Загрузка..."} back_button={true} /> : <Header name={Name ? Name : "Ошибка"} back_button={true} />}
     {!isLoading ?  <section className={style.wrraperBook}>
                 <div className={style.cover}>
                     <img src="https://s1.livelib.ru/boocover/1002110803/200x305/bce2/boocover.jpg" alt="" />

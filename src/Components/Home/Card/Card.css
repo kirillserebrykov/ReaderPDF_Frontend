@@ -1,4 +1,4 @@
-.cards{
+.cards, .cardsActive{
     background:url("https://s1.livelib.ru/boocover/1002110803/200x305/bce2/boocover.jpg") no-repeat;
     width: 200px;
     height: 300px;
@@ -36,4 +36,58 @@
     width: 200px;
     height: 300px;
     background-color: #2D2828;
+    position: relative;
+}
+
+.cardsBackActive{
+    width: 200px;
+    height: 300px;
+    background-color: #2D2828;
+    position: relative;
+}
+
+.cardsActive{
+    transition: 1s;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
+    position: relative;
+}
+
+.Check {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70px;
+    height: 70px;
+    z-index: 5;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    background-color:#fff;
+    border: 4px solid #1A1A1D;
+    border-radius:100%;
+    -webkit-border-radius:100%;
+    -moz-border-radius:100%;
+    -ms-border-radius:100%;
+    -o-border-radius:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.Check:hover{
+    transition: 250ms;
+    background-color: #1A1A1D;
+    -webkit-transition: 250ms;
+    -moz-transition: 250ms;
+    -ms-transition: 250ms;
+    -o-transition: 250ms;
 }

@@ -69,8 +69,11 @@ self.addEventListener('message', (event) => {
   }  
 });
 console.clear()
-// Any other custom service worker logic can go here.
+
 self.addEventListener("fetch", e =>{
+  if(!e.request.url.startsWith('http')){
+    self.skipWaiting();
+ } else {
   e.respondWith(
     caches.open('mysite-dynamic').then(function(cache) {
       return cache.match(e.request).then(function (response) {
@@ -79,6 +82,27 @@ self.addEventListener("fetch", e =>{
           return response;
         });
       });
-    })
+    }) 
   )
-})
+ }})
+
+
+ /*
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
+
+
+module.exports = function override(config, env) {
+    config.plugins  = config.plugins.map(plugin => {
+        if(plugin.constructor.name === 'GenerateSW') {
+            return new WorkboxWebpackPlugin.InjectManifest({
+                swSrc: './src/service-worker.js',
+                swDest: 'service-worker.js',
+                
+            }) 
+        }
+        return plugin
+    })
+return config;
+}
+
+*/
