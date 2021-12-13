@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import appReducer from './appSlice'
+import selectSlice from './selectSlice'
 import { setupListeners } from '@reduxjs/toolkit/query/react'
 import { getRequestsAPI } from './data-layer-level/getRequests'
 export const store = configureStore({
   reducer: {
-    appReducer : appReducer,
+    selectState : selectSlice,
     [getRequestsAPI.reducerPath]: getRequestsAPI.reducer,
    },
    middleware: (getDefaultMiddleware) =>

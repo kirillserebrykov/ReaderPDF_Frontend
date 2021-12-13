@@ -12,6 +12,8 @@ export const useSingleAndDoubleClick = (actionSimpleClick, actionDoubleClick, de
 
         if (click === 2) actionDoubleClick();
         return () => clearTimeout(timer);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [click]);
 
 

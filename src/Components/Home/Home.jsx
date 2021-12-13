@@ -2,21 +2,16 @@ import React from 'react';
 import Header from '../Header/Header';
 import CardsDoc from './Card/CardsDoc';
 import style from "../Header/Header.module.css"
-import { IconButton } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
 import LinearProgress from '@mui/material/LinearProgress';
 import Error from '../Error/Error';
+import {ButtonDelete, ButtonAdd} from './ActionsButtons/ButtonsAddAndDelete';
 
-
-const MarkUpHome = ({ dataCatalog, isLoading }) => {
+const MarkUpHome = ({ dataCatalog, isLoading, addSelect, deleteSelectDoc, stateSelectedDocs}) => {
     const Cards = dataCatalog && dataCatalog.map(el => {
         return <div key={el._id} >
-            <CardsDoc filename={el.filename} />
+            <CardsDoc filename={el.filename}  deleteSelectDoc={deleteSelectDoc} addSelect={addSelect} />
         </div>
     })
-
-
 
     return (
         <>
@@ -25,16 +20,8 @@ const MarkUpHome = ({ dataCatalog, isLoading }) => {
                 {Cards && Cards}
             </section>
             <nav className={style.WrraperButton}>
-                <div className={style.ButtonsBackground}>
-                    <IconButton className={style.ButtonAdd} color="success" sx={{ with: "80px", height: "80px" }}  >
-                        <AddIcon fontSize="large" color="success" />
-                    </IconButton>
-                </div>
-                <div className={style.ButtonsBackground}>
-                    <IconButton className={style.ButtonAdd} sx={{ with: "80px", height: "80px" }}  >
-                        <DeleteIcon fontSize="large" />
-                    </IconButton>
-                </div>
+                <ButtonAdd  stateSelectedDocs={stateSelectedDocs}/>
+                <ButtonDelete stateSelectedDocs={stateSelectedDocs} />
             </nav>
         </>
     )
@@ -42,7 +29,7 @@ const MarkUpHome = ({ dataCatalog, isLoading }) => {
 
 
 
-const Home = ({ dataCatalog, isLoading, error, refreshHandlerName, refreshHandler }) => {
+const Home = ({ dataCatalog, isLoading, error, refreshHandlerName, addSelect, deleteSelectDoc, stateSelectedDocs }) => {
 
    
     return <>
@@ -51,7 +38,7 @@ const Home = ({ dataCatalog, isLoading, error, refreshHandlerName, refreshHandle
             page="документ"
             refreshHandlerName={refreshHandlerName}
             isLoading={isLoading}
-        /> : <MarkUpHome dataCatalog={dataCatalog} isLoading={isLoading} />}
+        /> : <MarkUpHome dataCatalog={dataCatalog} isLoading={isLoading} addSelect={addSelect} deleteSelectDoc={deleteSelectDoc} stateSelectedDocs={stateSelectedDocs} />}
     </>
 
 
