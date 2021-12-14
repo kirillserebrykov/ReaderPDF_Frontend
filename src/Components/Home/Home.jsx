@@ -6,13 +6,15 @@ import LinearProgress from '@mui/material/LinearProgress';
 import Error from '../Error/Error';
 import {ButtonDelete, ButtonAdd} from './ActionsButtons/ButtonsAddAndDelete';
 
+
+
 const MarkUpHome = ({ dataCatalog, isLoading, addSelect, deleteSelectDoc, stateSelectedDocs}) => {
     const Cards = dataCatalog && dataCatalog.map(el => {
         return <div key={el._id} >
             <CardsDoc filename={el.filename}  deleteSelectDoc={deleteSelectDoc} addSelect={addSelect} />
         </div>
     })
-
+    
     return (
         <>
             {isLoading && <LinearProgress color="inherit" />}
