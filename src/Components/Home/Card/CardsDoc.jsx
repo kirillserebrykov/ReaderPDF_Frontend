@@ -22,6 +22,8 @@ const CardsDoc = (props) => {
         props.deleteSelectDoc(props.filename)
         e.stopPropagation()
     }
+
+    
     return <div onClick={useSingleAndDoubleClick(rederect(), select())} className={`cardsBack${isSelect ? "Active" : ""}`} >
         <div className={`cards${isSelect ? "Active" : ""}`}></div>
         {isSelect &&

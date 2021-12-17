@@ -25,7 +25,7 @@ export const ButtonDelete = ({stateSelectedDocs}) => {
 }
 
 export const ButtonAdd = ({stateSelectedDocs}) => {
-
+     
     return <div className={style.ButtonsBackground}>
         <IconButton  className={style.ButtonAdd} color="success" sx={{ with: "80px", height: "60px" }}  >
             <AddIcon fontSize="large" color="success" />

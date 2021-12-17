@@ -1,20 +1,21 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Header from '../Header/Header';
 import CardsDoc from './Card/CardsDoc';
 import style from "../Header/Header.module.css"
 import LinearProgress from '@mui/material/LinearProgress';
 import Error from '../Error/Error';
-import {ButtonDelete, ButtonAdd} from './ActionsButtons/ButtonsAddAndDelete';
+import { ButtonDelete, ButtonAdd } from './ActionsButtons/ButtonsAddAndDelete';
+import Addbookcontainer from './AddBook/AddBookContainer';
 
 
-
-const MarkUpHome = ({ dataCatalog, isLoading, addSelect, deleteSelectDoc, stateSelectedDocs}) => {
+const MarkUpHome = ({ dataCatalog, isLoading, addSelect, deleteSelectDoc, stateSelectedDocs }) => {
+    const [isAddBookPopUp, setisAddBookPopUp] = useState(false)
     const Cards = dataCatalog && dataCatalog.map(el => {
         return <div key={el._id} >
-            <CardsDoc filename={el.filename}  deleteSelectDoc={deleteSelectDoc} addSelect={addSelect} />
+            <CardsDoc filename={el.filename} deleteSelectDoc={deleteSelectDoc} addSelect={addSelect} />
         </div>
     })
-    
+
     return (
         <>
             {isLoading && <LinearProgress color="inherit" />}
@@ -22,9 +23,10 @@ const MarkUpHome = ({ dataCatalog, isLoading, addSelect, deleteSelectDoc, stateS
                 {Cards && Cards}
             </section>
             <nav className={style.WrraperButton}>
-                <ButtonAdd  stateSelectedDocs={stateSelectedDocs}/>
+                <ButtonAdd stateSelectedDocs={stateSelectedDocs} />
                 <ButtonDelete stateSelectedDocs={stateSelectedDocs} />
             </nav>
+            <Addbookcontainer />
         </>
     )
 }
@@ -33,7 +35,7 @@ const MarkUpHome = ({ dataCatalog, isLoading, addSelect, deleteSelectDoc, stateS
 
 const Home = ({ dataCatalog, isLoading, error, refreshHandlerName, addSelect, deleteSelectDoc, stateSelectedDocs }) => {
 
-   
+
     return <>
         <Header name="Библиотека" back_button={false} />
         {error ? <Error error={error}
