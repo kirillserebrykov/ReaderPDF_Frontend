@@ -1,5 +1,5 @@
 .uploadBookPopUp{
-    width: 500px;
+    width: 450px;
    
     left: 50%;
     top: 50%;
@@ -92,14 +92,29 @@
     color: #ffff;
 }
 
-.dropDownWrrap{
+.DragAndDropWrrap{
   width: 100%;
   height: 250px;
-  padding: 10px;
+  padding: 20px;
+  padding-top: 0;
+  
 }
 
-.dropDown{
+.DragAndDrop{
     width: 100%;
     height: 100%;
     border: 2px solid rgb(59, 56, 56);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+ .css-1bs2ead-MuiSvgIcon-root{
+    animation: DragAndDrop 3s ease-in-out infinite !important;
+    -webkit-animation: DragAndDrop 3s ease-in-out infinite !important;
+}
+
+@keyframes DragAndDrop {
+    
+    50% { opacity: 0.5;} 
+    100% { opacity: 1; }
+   }
