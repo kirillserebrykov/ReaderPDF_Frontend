@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../Header/Header';
 import CardsDoc from './Card/CardsDoc';
 import style from "../Header/Header.module.css"
@@ -6,10 +6,12 @@ import LinearProgress from '@mui/material/LinearProgress';
 import Error from '../Error/Error';
 import { ButtonDelete, ButtonAdd } from './ActionsButtons/ButtonsAddAndDelete';
 import Addbookcontainer from './AddBook/AddBookContainer';
-
-
+import { Routes, Route, useLocation} from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 const MarkUpHome = ({ dataCatalog, isLoading, addSelect, deleteSelectDoc, stateSelectedDocs }) => {
-    const [isAddBookPopUp, setisAddBookPopUp] = useState(false)
+    const location = useLocation();
+    
+
     const Cards = dataCatalog && dataCatalog.map(el => {
         return <div key={el._id} >
             <CardsDoc filename={el.filename} deleteSelectDoc={deleteSelectDoc} addSelect={addSelect} />
@@ -26,7 +28,13 @@ const MarkUpHome = ({ dataCatalog, isLoading, addSelect, deleteSelectDoc, stateS
                 <ButtonAdd stateSelectedDocs={stateSelectedDocs} />
                 <ButtonDelete stateSelectedDocs={stateSelectedDocs} />
             </nav>
-            <Addbookcontainer />
+            <TransitionGroup>
+                <CSSTransition key={location.key} classNames={style.UploadFileAnimation} timeout={2000}>
+                <Routes >
+                    <Route path=":StatusUploadFile" element={<Addbookcontainer />} />
+                </Routes>
+            </CSSTransition>
+            </TransitionGroup>
         </>
     )
 }

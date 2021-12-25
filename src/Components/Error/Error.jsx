@@ -11,17 +11,15 @@ const styleAlert = { position: "fixed", left: "0", bottom: "0" }
 const Error = ({ error, refreshHandlerName, page="каталог", filename="", isLoading }) => {
     const [alert, setAlert] = useState(true)
     const refreshHandler =  usePrefetch(refreshHandlerName && refreshHandlerName)
-
     const RefrechCatalog = () => {
         filename ? refreshHandler(filename) : refreshHandler()
         setAlert(true)
-        
     }
 
     return <div className={style.errorWrraper}>
         <span className={style.errorText}>Не удалось загрузить {page} :(</span>
         <LoadingButton loading={isLoading}  onClick={RefrechCatalog} className={style.refreshButton}  variant="outlined">  <span className={style.refreshButtonText}>обновить</span></LoadingButton>
-        <Fade  in={alert} timeout={500}>
+        <Fade in={alert} timeout={500}>
             <Alert sx={styleAlert} className={style.MuiAlert} variant="outlined" severity="error" onClose={() => setAlert(false)} >{error && error.status}</Alert>
         </Fade>
         

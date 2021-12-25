@@ -52,6 +52,16 @@
 .uploadBookPopUpNext{
     margin-bottom: 10px;
     background-color:#78b666;
+    
+}
+.a{
+    border-radius:100% 0 0 100%;
+    -webkit-border-radius:100% 0 0 100%;
+    -moz-border-radius:100% 0 0 100%;
+    -ms-border-radius:100% 0 0 100%;
+    -o-border-radius:100% 0 0 100%;
+}
+.b{
     border-radius:100%;
     -webkit-border-radius:100%;
     -moz-border-radius:100%;
@@ -59,6 +69,16 @@
     -o-border-radius:100%;
 }
 
+
+.uploadBookPopUpCancel{
+    margin-bottom: 10px;
+    background-color:#78b666;
+    border-radius:0 100% 100% 0;
+    -webkit-border-radius:0 100% 100% 0;
+    -moz-border-radius:0 100% 100% 0;
+    -ms-border-radius:0 100% 100% 0;
+    -o-border-radius:0 100% 100% 0;
+}
 
 .uploadBookPopUpProcessActions:after{
     content: "";
@@ -108,8 +128,7 @@
 .filesNameWrrap{
     
     padding: 5px;
-    min-width: 400px;
-    
+    max-width: 400px;
     text-align: center;
     white-space: normal;
     margin: 5px;
@@ -119,7 +138,11 @@
     font-weight: 700;
     font-size: 23px;
     color: #4eac53  ;
+
     
 }
 
-
+.navWrraper{
+    display: flex;
+    flex-direction:row
+}

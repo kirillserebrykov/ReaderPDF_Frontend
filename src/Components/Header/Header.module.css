@@ -33,3 +33,22 @@
     display: flex;
     flex-direction:row;
 }
+
+
+
+
+
+.UploadFileAnimation-enter {
+    opacity: 0;
+  }
+  .UploadFileAnimation-enter-active {
+    opacity: 1;
+    transition: opacity 200ms;
+  }
+  .UploadFileAnimation-exit {
+    opacity: 1;
+  }
+  .UploadFileAnimation-exit-active {
+    opacity: 0;
+    transition: opacity 200ms;
+  }
