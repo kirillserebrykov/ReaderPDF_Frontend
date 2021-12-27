@@ -12,6 +12,6 @@ export const validationFile = (file) => {
     const validExpMaxSymbols = file.type === "application/pdf" 
     if(validExpType) {
         if (validExpMaxSymbols)  return FileValid("ok", file, null)
-        else return FileValid("error", null, "слишком большое имя файла") 
-    } else return FileValid("error", null, "не валиден расширения файла") 
+        else return FileValid("error", file, "Слишком длинное имя файла") 
+    } else return FileValid("error", file, "Не валиденое расширения файла") 
 }

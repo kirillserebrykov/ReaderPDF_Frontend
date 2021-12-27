@@ -3,7 +3,9 @@ import IconButton from '@mui/material/IconButton';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import style from './AddBook.module.css';
 import {validationFile} from './validationFile';
+
 const checkedFilesHandler = (arrFile) => arrFile.map(file => validationFile(file))
+
 const UploadFileZone = ({ setFile }) => {
     function dragDropStartHandler(e) {
         e.preventDefault()
