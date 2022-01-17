@@ -1,12 +1,13 @@
 import React from 'react'
 import IconButton from '@mui/material/IconButton';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
-import style from './AddBook.module.css';
-import {validationFile} from './validationFile';
+import style from '../AddBook.module.css';
+import {validationFile} from '../validationFile';
 
 const checkedFilesHandler = (arrFile) => arrFile.map(file => validationFile(file))
 
 const UploadFileZone = ({ setFile }) => {
+    
     function dragDropStartHandler(e) {
         e.preventDefault()
     }
@@ -27,7 +28,7 @@ const UploadFileZone = ({ setFile }) => {
         onDragLeave={e => dragDropEndHandler(e)}
         onDragOver={e => dragDropStartHandler(e)}
         onDrop={e => dragDropHandler(e)}
-        className={style.DragAndDropWrrap} >
+        className={style.DragAndDropWrap} >
         <div className={style.DragAndDrop} >
             <IconButton variant="contained" component="label">
                 <UploadFileIcon sx={{ fontSize: "60px", fill: '#4F4C4C' }} />

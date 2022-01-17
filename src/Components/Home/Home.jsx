@@ -6,7 +6,7 @@ import  './PopupAnim.css';
 import LinearProgress from '@mui/material/LinearProgress';
 import Error from '../Error/Error';
 import { ButtonDelete, ButtonAdd } from './ActionsButtons/ButtonsAddAndDelete';
-import Addbookcontainer from './AddBook/AddBookContainer';
+import AddBookContainer from './AddBook/AddBookContainer';
 import { Routes, Route, useLocation} from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
@@ -34,7 +34,7 @@ const MarkUpHome = ({ dataCatalog, isLoading, addSelect, deleteSelectDoc, stateS
         <TransitionGroup>
             <CSSTransition key={location.key} classNames="UploadFileAnimation" timeout={250}>
                 <Routes>
-                    <Route path=":StatusUploadFile" element={<Addbookcontainer />} />
+                    <Route path=":StatusUploadFile" element={<AddBookContainer />} />
                 </Routes>
             </CSSTransition>
         </TransitionGroup>
@@ -45,7 +45,6 @@ const MarkUpHome = ({ dataCatalog, isLoading, addSelect, deleteSelectDoc, stateS
 
 
 const Home = ({ dataCatalog, isLoading, error, refreshHandlerName, addSelect, deleteSelectDoc, stateSelectedDocs }) => {
-
 
     return <>
         <Header name="Библиотека" back_button={false} />

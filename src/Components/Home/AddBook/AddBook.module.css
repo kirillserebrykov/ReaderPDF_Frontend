@@ -2,7 +2,7 @@
     min-width: 450px;
     left: 50%;
     top: 50%;
-    position: fixed;
+    position: absolute;
     z-index: 7;
     display: flex;
     flex-direction: column;
@@ -41,13 +41,16 @@
     padding-left: 10px;
     padding-bottom: 10px;
 
+
 }
 .hidden{
-    opacity: 0;
-    bottom: 0px;
+    opacity:0;
+    
 }
 .visibility{
-    opacity: 1;
+    opacity:1;
+    
+    
 }
 .fileOk{
     background:none ;
@@ -82,37 +85,9 @@
     
 
 }
-.uploadBookPopUpClose{
-    position: absolute;
-    right: 0;
-}
-.uploadBookPopUpInfo{
-    position: absolute;
-    left: 0;
-    
-}
-
-.uploadBookPopUpNext{
-    margin-bottom: 10px;
-    background-color:#78b666;
-    border-radius:100% 0 0 100%;
-    -webkit-border-radius:100% 0 0 100%;
-    -moz-border-radius:100% 0 0 100%;
-    -ms-border-radius:100% 0 0 100%;
-    -o-border-radius:100% 0 0 100%;
-}
 
 
 
-.uploadBookPopUpCancel{
-    margin-bottom: 10px;
-    background-color:#78b666;
-    border-radius:0 100% 100% 0;
-    -webkit-border-radius:0 100% 100% 0;
-    -moz-border-radius:0 100% 100% 0;
-    -ms-border-radius:0 100% 100% 0;
-    -o-border-radius:0 100% 100% 0;
-}
 
 
 .uploadBookPopUpProcessActions:after{
@@ -141,7 +116,7 @@
     color: #ffff;
 }
 
-.DragAndDropWrrap{
+.DragAndDropWrap{
   width: 100%;
   height: 250px;
   padding: 10px;
@@ -160,7 +135,7 @@
     
     
 }
-.filesNameWrrap{
+.filesNameWrap{
     padding: 5px;
     max-width: 400px;
     text-align: center;
@@ -186,7 +161,10 @@
     
 }
 
-.navWrraper{
+.navWrapper{
     display: flex;
     flex-direction:row
+}
+.Input{
+    color: rgb(175, 50, 50) !important;
 }

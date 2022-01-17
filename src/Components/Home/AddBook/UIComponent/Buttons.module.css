@@ -1,0 +1,48 @@
+.uploadBookPopUpClose{
+    position: absolute;
+    right: 0;
+}
+.uploadBookPopUpInfo{
+    position: absolute;
+    left: 0;
+    
+}
+.BtnNextNextWrapper{
+    width: 50px;    
+    margin-bottom: 10px;
+    background-color:#78b666;
+    border-radius:100% 0 0 100%;
+    -webkit-border-radius:100% 0 0 100%;
+    -moz-border-radius:100% 0 0 100%;
+    -ms-border-radius:100% 0 0 100%;
+    -o-border-radius:100% 0 0 100%;
+}
+.FullBorderRadius {
+    text-align: center;
+    border-radius:100%;
+    -webkit-border-radius:100% ;
+    -moz-border-radius:100% ;
+    -ms-border-radius:100% ;
+   -o-border-radius:100% ;
+
+    width: 50px;
+    height: 50px;   
+}
+
+
+.uploadBookPopUpCancel{
+    margin-bottom: 10px;
+    background-color:#78b666;
+    border-radius:0 100% 100% 0;
+    -webkit-border-radius:0 100% 100% 0;
+    -moz-border-radius:0 100% 100% 0;
+    -ms-border-radius:0 100% 100% 0;
+    -o-border-radius:0 100% 100% 0;
+}
+
+.WrapperButtonDelete{
+    position: absolute; 
+    right: 0;
+    top: -33px;
+    z-index: 777;
+}

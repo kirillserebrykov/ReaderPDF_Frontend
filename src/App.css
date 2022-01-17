@@ -78,7 +78,7 @@ select {
 }
 
 .react-pdf__Page__svg{
-
+  
   opacity: 1   !important
 }
 .react-pdf__Page__textContent{
@@ -89,3 +89,24 @@ select {
   
 }
 
+textarea::-webkit-scrollbar {
+  width: 10px;
+}
+
+textarea::-webkit-scrollbar-track {
+  border: 1px solid rgb(126, 126, 126) ;
+  border-radius:100px;
+  -webkit-border-radius:100px;
+  -moz-border-radius:100px;
+  -ms-border-radius:100px;
+  -o-border-radius:100px;
+}
+
+textarea:focus::-webkit-scrollbar-thumb {
+background-color: rgb(32, 32, 32);
+outline: 1px solid #78b666;
+}
+textarea::-webkit-scrollbar-thumb {
+  background-color: rgb(32, 32, 32);
+  
+  }

@@ -1,11 +1,13 @@
 import React from 'react';
 import AddBook from './AddBook'
-import { addDocs } from '../../../store/uploadDocSlice'
+import { addDocs, deleteDocs } from '../../../store/uploadDocSlice'
 import { useSelector, useDispatch } from 'react-redux'
-const Addbookcontainer = () => {
+const AddBookContainer = () => {
+
     const dispatch = useDispatch() 
     const addDocsToState = (docs) => dispatch(addDocs(docs))
-    return <AddBook addDocsToState={addDocsToState} />
+    const stateAddition = useSelector((state) => state.uploadDocSlice.DocsToUpload)
+    return <AddBook addDocsToState={addDocsToState} stateAddition={stateAddition} />
 }
 
-export default Addbookcontainer;
+export default AddBookContainer;

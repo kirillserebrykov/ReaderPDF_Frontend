@@ -7,8 +7,6 @@ import ReadContainer from './Components/Read/ReadContainer'
 
 
 const App = () => {
-
-
   return <Routes >
                 <Route path="/" element={ <HomeContainer /> } />
                 <Route path="/Home/*" element={ <HomeContainer /> } />

@@ -5,9 +5,11 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 import NotesIcon from '@mui/icons-material/Notes';
 import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
 import Collapse from '@mui/material/Collapse'
-import UploadFileZone from './UploadFileZone';
+import UploadFileZone from './UIComponent/UploadFileZone';
 import { useLocation } from 'react-router-dom';
 import { BtnNext, BtnCancel, BtnClose, InfoBtn } from './UIComponent/Buttons';
+import AdditionalInfo from './AdditionalInfo/AdditionalInfo';
+import { useNavigate } from 'react-router-dom';
 
 const SelectDocs = ({ files }) => {
     return files.map((file, index) => {
@@ -56,10 +58,10 @@ const UploadFile = ({addDocsToState, wipeFiles, isfiles, files, setFile }) => {
     return <>
         <span className={style.uploadBookPopUpTitle}>{!isfiles ? "Загрузить Документ" : "Загруженые Документы"}</span>
         <Collapse sx={{ width: "100%" }} in={Boolean(!isfiles)}>{<UploadFileZone setFile={setFile} />}</Collapse>
-        <Collapse in={Boolean(isfiles)}>{<div className={style.filesNameWrrap}><SelectDocs files={files} /></div>}</Collapse>
+        <Collapse in={Boolean(isfiles)}>{<div className={style.filesNameWrap}><SelectDocs files={files} /></div>}</Collapse>
         <Collapse orientation='horizontal' in={Boolean(isfiles)}>{isfiles &&
-            <nav className={style.navWrraper}>
-                <BtnNext files={files} addDocsToState={addDocsToState} />
+            <nav className={style.navWrapper}>
+                <BtnNext files={files} addDocsToState={addDocsToState} FullBorderRadius={false}  RedirectTo={"FillDescription"} />
                 <BtnCancel wipeFiles={wipeFiles} />
             </nav>
         }</Collapse>
@@ -68,13 +70,16 @@ const UploadFile = ({addDocsToState, wipeFiles, isfiles, files, setFile }) => {
 
 
 
-const AddBook = ({addDocsToState}) => {
+const AddBook = ({addDocsToState, stateAddition, deleteDocsFromState}) => {
     const [files, setFile] = useState([])
     const [Info, setInfo] = useState(false)
     const wipeFiles = () => setFile([])
     const isfiles = files[0]
     const location = useLocation()
+    const navigate = useNavigate();
     const StatusUpload = location.pathname.replace("/Home", "")
+    if(StatusUpload === "/FillDescription" && !stateAddition[0]) navigate("../UploadFile")
+    
     return (
         <>
 
@@ -84,9 +89,7 @@ const AddBook = ({addDocsToState}) => {
                 </div>
                 <InfoUpload isfiles={isfiles} StatusUpload={StatusUpload} setInfo={setInfo} Info={Info} />
                 {StatusUpload === "/UploadFile" && <UploadFile addDocsToState={addDocsToState} isfiles={isfiles} wipeFiles={wipeFiles} files={files} setFile={setFile} />}
-                {StatusUpload === "/FillDescription" && <div className="">
-                    dsdsa
-                </div>}
+                {StatusUpload === "/FillDescription" && <AdditionalInfo  stateAddition={stateAddition}/>}
             </section>
         </>
     );

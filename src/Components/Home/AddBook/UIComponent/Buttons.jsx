@@ -1,27 +1,34 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import style from '../AddBook.module.css';
+import style from './Buttons.module.css';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import DoDisturbOnIcon from '@mui/icons-material/DoDisturbOn';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { deleteDocs } from '../../../../store/uploadDocSlice'
+import { useSelector, useDispatch } from 'react-redux'
 
-export const BtnNext = ({addDocsToState, files}) => {
+
+
+const AddSelectedFile = (files, handlerAddToState) =>{
+    files.map(File => {
+        const localDocUrl = window.URL.createObjectURL(File.file);
+        let FileName = File.file.name
+        handlerAddToState({[FileName]:localDocUrl})
+    })
+}
+
+export const BtnNext = ({ addDocsToState, files, RedirectTo, FullBorderRadius }) => {
     const navigate = useNavigate();
-    
-    const ClickHanddler = () => {
-        files.map(file =>{
-            const localDocUrl = window.URL.createObjectURL(file.file);
-            addDocsToState(localDocUrl)
-        })
-        
-        navigate('../FillDescription')
-        
+    const ConfirmationFileHandler = () => {
+        if(RedirectTo === "FillDescription") AddSelectedFile(files, addDocsToState) 
+        navigate(`../${RedirectTo}`)
     }
     return (
-        <div className={style.uploadBookPopUpNext}>
-            <IconButton onClick={ClickHanddler} color="success" aria-label="upload pdf" component="span">
+        <div className={`${style.BtnNextNextWrapper} ${ FullBorderRadius && style.FullBorderRadius}`}>
+            <IconButton  type="submit" onClick={ConfirmationFileHandler} color="success" aria-label="upload pdf" component="span">
                 <NavigateNextIcon sx={{ fontSize: "30px" }} />
             </IconButton>
         </div>
@@ -62,4 +69,27 @@ export const InfoBtn = ({ setInfo, Info }) => {
             </IconButton>
         </div>
     )
+}
+
+
+const handlerDeleteFromState = (FileURL, FileName, deleteDocsFromState) =>{
+    URL.revokeObjectURL(FileURL)
+    deleteDocsFromState(FileName)
+}
+
+
+
+ const BtnDelete = ({FileURL, FileName, deleteDocsFromState}) => {
+   return <div className={style.WrapperButtonDelete}>
+       <IconButton onClick={() => handlerDeleteFromState(FileURL, FileName, deleteDocsFromState)} sx={{ with: "50px" }}>
+           <DeleteIcon />
+       </IconButton>
+   </div>
+}
+
+
+export const BtnDeleteContainer = ({FileURL, FileName}) => {
+    const dispatch = useDispatch() 
+    const deleteDocsFromState = (docs) => dispatch(deleteDocs(docs))
+    return <BtnDelete FileURL={FileURL} FileName={FileName} deleteDocsFromState={deleteDocsFromState}  />
 }
