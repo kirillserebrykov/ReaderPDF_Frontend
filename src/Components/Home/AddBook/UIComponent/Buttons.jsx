@@ -72,24 +72,25 @@ export const InfoBtn = ({ setInfo, Info }) => {
 }
 
 
-const handlerDeleteFromState = (FileURL, FileName, deleteDocsFromState) =>{
+const handlerDeleteFromState = (FileURL, FileName, deleteDocsFromState, onDeleteDataForm) =>{
     URL.revokeObjectURL(FileURL)
     deleteDocsFromState(FileName)
+    onDeleteDataForm()
 }
 
 
 
- const BtnDelete = ({FileURL, FileName, deleteDocsFromState}) => {
+ const BtnDelete = ({FileURL, FileName, deleteDocsFromState, onDeleteDataForm}) => {
    return <div className={style.WrapperButtonDelete}>
-       <IconButton onClick={() => handlerDeleteFromState(FileURL, FileName, deleteDocsFromState)} sx={{ with: "50px" }}>
+       <IconButton onClick={() => handlerDeleteFromState(FileURL, FileName, deleteDocsFromState, onDeleteDataForm)} sx={{ with: "50px" }}>
            <DeleteIcon />
        </IconButton>
    </div>
 }
 
 
-export const BtnDeleteContainer = ({FileURL, FileName}) => {
+export const BtnDeleteContainer = ({FileURL, FileName, onDeleteDataForm}) => {
     const dispatch = useDispatch() 
     const deleteDocsFromState = (docs) => dispatch(deleteDocs(docs))
-    return <BtnDelete FileURL={FileURL} FileName={FileName} deleteDocsFromState={deleteDocsFromState}  />
+    return <BtnDelete onDeleteDataForm={onDeleteDataForm} FileURL={FileURL} FileName={FileName} deleteDocsFromState={deleteDocsFromState}  />
 }

@@ -9,7 +9,7 @@ import UploadFileZone from './UIComponent/UploadFileZone';
 import { useLocation } from 'react-router-dom';
 import { BtnNext, BtnCancel, BtnClose, InfoBtn } from './UIComponent/Buttons';
 import AdditionalInfo from './AdditionalInfo/AdditionalInfo';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Redirect  } from 'react-router-dom';
 
 const SelectDocs = ({ files }) => {
     return files.map((file, index) => {
@@ -70,7 +70,7 @@ const UploadFile = ({addDocsToState, wipeFiles, isfiles, files, setFile }) => {
 
 
 
-const AddBook = ({addDocsToState, stateAddition, deleteDocsFromState}) => {
+const AddBook = ({addDocsToState, stateAddition}) => {
     const [files, setFile] = useState([])
     const [Info, setInfo] = useState(false)
     const wipeFiles = () => setFile([])
@@ -78,11 +78,12 @@ const AddBook = ({addDocsToState, stateAddition, deleteDocsFromState}) => {
     const location = useLocation()
     const navigate = useNavigate();
     const StatusUpload = location.pathname.replace("/Home", "")
-    if(StatusUpload === "/FillDescription" && !stateAddition[0]) navigate("../UploadFile")
+    console.log(stateAddition)
+    if(StatusUpload === "/FillDescription" && !stateAddition[0])  navigate("../UploadFile")  
+    
     
     return (
         <>
-
             <section className={style.uploadBookPopUp}>
                 <div className={`${style.Info} ${Info ? style.visibility : style.hidden} `}>
                     <p className={style.InfoText}>Чтобы загрузить файл, перетащите или выберете нужный файл. Если файл помечен <mark className={style.fileOk} >зелёным</mark> цветом тогда всё ok, но если файл помечен <mark className={style.fileErr}>красным</mark> тогда он не будет принят</p>

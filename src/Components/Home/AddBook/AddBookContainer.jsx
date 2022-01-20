@@ -7,6 +7,7 @@ const AddBookContainer = () => {
     const dispatch = useDispatch() 
     const addDocsToState = (docs) => dispatch(addDocs(docs))
     const stateAddition = useSelector((state) => state.uploadDocSlice.DocsToUpload)
+    console.log( stateAddition)
     return <AddBook addDocsToState={addDocsToState} stateAddition={stateAddition} />
 }
 
