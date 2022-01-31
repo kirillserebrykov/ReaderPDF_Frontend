@@ -8,24 +8,32 @@ import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { deleteDocs } from '../../../../store/uploadDocSlice'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 
 
 const AddSelectedFile = (files, handlerAddToState) =>{
-    files.map(File => {
-        const localDocUrl = window.URL.createObjectURL(File.file);
-        let FileName = File.file.name
-        handlerAddToState({[FileName]:localDocUrl})
+      files.map(File => {
+        console.log()
+        if(File.status === "ok") {
+            const localDocUrl = window.URL.createObjectURL(File.file);
+            let FileName = File.file.name
+            handlerAddToState({[FileName]:localDocUrl})
+        }
     })
 }
+
+
+
 
 export const BtnNext = ({ addDocsToState, files, RedirectTo, FullBorderRadius }) => {
     const navigate = useNavigate();
     const ConfirmationFileHandler = () => {
+        
         if(RedirectTo === "FillDescription") AddSelectedFile(files, addDocsToState) 
         navigate(`../${RedirectTo}`)
     }
+
     return (
         <div className={`${style.BtnNextNextWrapper} ${ FullBorderRadius && style.FullBorderRadius}`}>
             <IconButton  type="submit" onClick={ConfirmationFileHandler} color="success" aria-label="upload pdf" component="span">
@@ -45,11 +53,16 @@ export const BtnCancel = ({ wipeFiles }) => {
     );
 }
 
-export const BtnClose = () => {
+export const BtnClose = ({refetchCatalog}) => {
     const navigate = useNavigate();
+    const close = () =>{
+        navigate('/')
+        refetchCatalog()
+        
+    }
     return (
         <div className={style.uploadBookPopUpClose}>
-            <IconButton onClick={() => navigate('/')} sx={{ color: "#4F4C4C", }} aria-label="upload picture" component="span">
+            <IconButton onClick={close} sx={{ color: "#4F4C4C", }} aria-label="upload picture" component="span">
                 <CloseIcon sx={{ fontSize: "30px" }} />
             </IconButton>
         </div>

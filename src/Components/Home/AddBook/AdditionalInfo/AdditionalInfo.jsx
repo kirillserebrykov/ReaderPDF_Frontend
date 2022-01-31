@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState } from 'react';
 import style from './AdditionalInfo.module.css';
 import { CustomTextField } from '../UIComponent/CustomTextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -17,7 +17,7 @@ const outerTheme = createTheme({
 
 
 const DeleteDuplicateOrFile = (state, FileName) => {
-    console.log(state)
+    // eslint-disable-next-line 
     state && state.map((fileForm, index) => {
         if (Object.keys(fileForm).toString() === FileName) {
             return state.splice(index, 1)
@@ -29,8 +29,8 @@ const DeleteDuplicateOrFile = (state, FileName) => {
 const Form = ({ file, setStateForms, stateForms }) => {
     const FileName = Object.keys(file).toString()
     const FileURL = Object.values(file).toString()
-
     const { register, reset, handleSubmit, formState: { errors } } = useForm({ mode: "onTouched", shouldFocusError: true });
+
     const onSubmit = dataForm => setStateForms(currentState => {
         DeleteDuplicateOrFile(currentState, FileName)
         return [...currentState, { [FileName]: dataForm }]
@@ -44,7 +44,7 @@ const Form = ({ file, setStateForms, stateForms }) => {
         reset({ Name: "", Author: "", Description: "" })
     }
 
-    const ValidTextField = ({ defaultValue, NameTextField, requiredValue, maxLengthValue, multiline = false, maxRows = false }) => {
+    const ValidTextField = ({ defaultValue, NameTextField, requiredValue, maxLengthValue, multiline = false, maxRows = 0 }) => {
         return <CustomTextField
             defaultValue={defaultValue}
             {...register(NameTextField, { required: requiredValue, maxLength: { value: maxLengthValue, message: `Максимум допустимое кол-во символов ${maxLengthValue}` } })}
@@ -62,8 +62,8 @@ const Form = ({ file, setStateForms, stateForms }) => {
                 <legend className={style.InputSetName} > <span>{FileName}</span>  </legend>
                 <BtnDeleteContainer onDeleteDataForm={onDeleteDataForm} FileName={FileName} FileURL={FileURL} />
                 <ThemeProvider theme={outerTheme}>
-                    <ValidTextField defaultValue={FileName && FileName.replace(".pdf", "")} NameTextField="Name" requiredValue={"This is required"} maxLengthValue="25" />
-                    <ValidTextField NameTextField="Author" requiredValue={"This is required"} maxLengthValue="25" />
+                    <ValidTextField defaultValue={FileName && FileName.replace(".pdf", "")} NameTextField="Name"  maxLengthValue="25" />
+                    <ValidTextField NameTextField="Author" maxLengthValue="25" />
                     <ValidTextField NameTextField="Description" maxLengthValue="160" multiline maxRows={4} />
                 </ThemeProvider>
             </fieldset>
@@ -74,13 +74,13 @@ const Form = ({ file, setStateForms, stateForms }) => {
 
 
 
-const AdditionalInfo = ({ stateAddition }) => {
-    const [stateForms, setStateForms] = useState([])
-    const FormForFile = useMemo(() => {
-        return stateAddition.map((file, index) => <Form key={index} stateForms={stateForms} setStateForms={setStateForms} file={file} />)
-    }, [stateAddition]);
+const AdditionalInfo = ({ stateAddition, stateForms, setStateForms }) => {
     
+    const FormForFile = useMemo(() => {
+        return stateAddition.map((file, index) => <Form key={index} stateForms={stateForms} setStateForms={setStateForms} file={file} /> ) // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [stateAddition]);
 
+    
     return (
         <section >
             <div className={`${style.AdditionalInfoWrap} ${!stateAddition[1] && style.OneFile} `}>

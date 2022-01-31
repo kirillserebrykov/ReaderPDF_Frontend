@@ -2,18 +2,18 @@ import React from 'react';
 import Header from '../Header/Header';
 import CardsDoc from './Card/CardsDoc';
 import style from "../Header/Header.module.css"
-import  './PopupAnim.css';
+import './PopupAnim.css';
 import LinearProgress from '@mui/material/LinearProgress';
 import Error from '../Error/Error';
 import { ButtonDelete, ButtonAdd } from './ActionsButtons/ButtonsAddAndDelete';
 import AddBookContainer from './AddBook/AddBookContainer';
-import { Routes, Route, useLocation} from "react-router-dom";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { Routes, Route } from "react-router-dom";
+import { TransitionGroup  } from "react-transition-group";
+import { usePrefetch } from '../../store/data-layer-level/getRequests'
 
-const MarkUpHome = ({ dataCatalog, isLoading, addSelect, deleteSelectDoc, stateSelectedDocs }) => {
-    const location = useLocation();
-    
 
+const MarkUpHome = ({ dataCatalog, isLoading, addSelect, deleteSelectDoc, stateSelectedDocs, refetchCatalog }) => {
+    const refreshHandler =  usePrefetch( "GetCatalog")
     const Cards = dataCatalog && dataCatalog.map(el => {
         return <div key={el._id} >
             <CardsDoc filename={el.filename} deleteSelectDoc={deleteSelectDoc} addSelect={addSelect} />
@@ -30,21 +30,19 @@ const MarkUpHome = ({ dataCatalog, isLoading, addSelect, deleteSelectDoc, stateS
                 <ButtonAdd stateSelectedDocs={stateSelectedDocs} />
                 <ButtonDelete stateSelectedDocs={stateSelectedDocs} />
             </nav>
-
-        <TransitionGroup>
-            <CSSTransition key={location.key} classNames="UploadFileAnimation" timeout={250}>
+            <TransitionGroup>
                 <Routes>
-                    <Route path=":StatusUploadFile" element={<AddBookContainer />} />
+                    <Route path=":StatusUploadFile/*" element={<AddBookContainer refetchCatalog={refetchCatalog} />} />
                 </Routes>
-            </CSSTransition>
-        </TransitionGroup>
+            </TransitionGroup>
+            
         </>
     )
 }
 
 
 
-const Home = ({ dataCatalog, isLoading, error, refreshHandlerName, addSelect, deleteSelectDoc, stateSelectedDocs }) => {
+const Home = ({ dataCatalog, isLoading, error, refreshHandlerName, addSelect, deleteSelectDoc, stateSelectedDocs, refetchCatalog }) => {
 
     return <>
         <Header name="Библиотека" back_button={false} />
@@ -52,7 +50,12 @@ const Home = ({ dataCatalog, isLoading, error, refreshHandlerName, addSelect, de
             page="документ"
             refreshHandlerName={refreshHandlerName}
             isLoading={isLoading}
-        /> : <MarkUpHome dataCatalog={dataCatalog} isLoading={isLoading} addSelect={addSelect} deleteSelectDoc={deleteSelectDoc} stateSelectedDocs={stateSelectedDocs} />}
+        /> : 
+        <MarkUpHome dataCatalog={dataCatalog} 
+        isLoading={isLoading} addSelect={addSelect} 
+        deleteSelectDoc={deleteSelectDoc} 
+        stateSelectedDocs={stateSelectedDocs}
+        refetchCatalog={refetchCatalog} />}
     </>
 
 
