@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import "./Card.css"
 import { useSingleAndDoubleClick } from "../../Snippets/doubleClick"
 import CheckIcon from '@mui/icons-material/Check';
 import Fade from '@mui/material/Fade';
 
+const checkSelectInState = (state, fileName, handlerState) =>{
+    state && state.map(el => {
+        if(el === fileName) handlerState(true)
+    })
+}
+
+
 const CardsDoc = (props) => {
     const navigate = useNavigate();
     const [isSelect, setIsSelect] = useState(false)
-
+    
+    useEffect(() => {
+        checkSelectInState(props.stateSelectedDocs, props.filename, setIsSelect)
+    }, [props.stateSelectedDocs])
+    
     const rederect = () => () => {
         if (isSelect) return
         else navigate(`/Book/${props.filename}`)

@@ -10,7 +10,7 @@ const HomeContainer = () => {
     const dispatch = useDispatch() 
     const addSelect = (doc) => dispatch(add(doc))
     const deleteSelectDoc = (nameDoc) => dispatch(deleteSelect(nameDoc))
-   
+    console.log(stateSelectedDocs)
     return <Home isLoading={isLoading} addSelect={addSelect} stateSelectedDocs={stateSelectedDocs}   deleteSelectDoc={deleteSelectDoc} refetchCatalog={refetch}  refreshHandlerName={refreshHandlerName}  dataCatalog={data && data} error={error} />
 }
 

@@ -1,0 +1,20 @@
+.wrraperHome {
+    display: grid;
+    grid-template-columns: 300px 300px 300px 300px;
+    grid-auto-rows: 400px ;
+    margin-top: 40px;
+    margin-left: 30px;
+}
+
+
+
+.WrraperButton{
+    width: 400px;
+    height: 60px;
+    position: fixed;
+    z-index: 4;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction:row;
+}

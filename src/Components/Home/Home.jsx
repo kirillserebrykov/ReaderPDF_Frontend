@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header/Header';
 import CardsDoc from './Card/CardsDoc';
-import style from "../Header/Header.module.css"
+import style from "./home.module.css"
 import './PopupAnim.css';
 import LinearProgress from '@mui/material/LinearProgress';
 import Error from '../Error/Error';
@@ -15,8 +15,9 @@ import { usePrefetch } from '../../store/data-layer-level/getRequests'
 const MarkUpHome = ({ dataCatalog, isLoading, addSelect, deleteSelectDoc, stateSelectedDocs, refetchCatalog }) => {
     const refreshHandler =  usePrefetch( "GetCatalog")
     const Cards = dataCatalog && dataCatalog.map(el => {
+
         return <div key={el._id} >
-            <CardsDoc filename={el.filename} deleteSelectDoc={deleteSelectDoc} addSelect={addSelect} />
+            <CardsDoc filename={el.filename} stateSelectedDocs={stateSelectedDocs}  deleteSelectDoc={deleteSelectDoc} addSelect={addSelect} />
         </div>
     })
 
