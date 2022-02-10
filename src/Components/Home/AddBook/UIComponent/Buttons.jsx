@@ -12,14 +12,14 @@ import { useDispatch } from 'react-redux'
 
 
 
-const AddSelectedFile = (files, handlerAddToState) =>{
-      files.map(File => {
-        console.log()
-        if(File.status === "ok") {
+const AddSelectedFile = (files, handlerAddToState) => {
+    files.map(File => {
+        if (File.status === "ok") {
             const localDocUrl = window.URL.createObjectURL(File.file);
             let FileName = File.file.name
-            handlerAddToState({[FileName]:localDocUrl})
-        }
+            handlerAddToState({ [FileName]: localDocUrl })
+            return null
+        } else return null
     })
 }
 
@@ -29,14 +29,13 @@ const AddSelectedFile = (files, handlerAddToState) =>{
 export const BtnNext = ({ addDocsToState, files, RedirectTo, FullBorderRadius }) => {
     const navigate = useNavigate();
     const ConfirmationFileHandler = () => {
-        
-        if(RedirectTo === "FillDescription") AddSelectedFile(files, addDocsToState) 
+        if (RedirectTo === "FillDescription") AddSelectedFile(files, addDocsToState)
         navigate(`../${RedirectTo}`)
     }
 
     return (
-        <div className={`${style.BtnNextNextWrapper} ${ FullBorderRadius && style.FullBorderRadius}`}>
-            <IconButton  type="submit" onClick={ConfirmationFileHandler} color="success" aria-label="upload pdf" component="span">
+        <div className={`${style.BtnNextNextWrapper} ${FullBorderRadius && style.FullBorderRadius}`}>
+            <IconButton type="submit" onClick={ConfirmationFileHandler} color="success" aria-label="upload pdf" component="span">
                 <NavigateNextIcon sx={{ fontSize: "30px" }} />
             </IconButton>
         </div>
@@ -44,6 +43,7 @@ export const BtnNext = ({ addDocsToState, files, RedirectTo, FullBorderRadius })
 }
 
 export const BtnCancel = ({ wipeFiles }) => {
+
     return (
         <div className={style.uploadBookPopUpCancel}>
             <IconButton onClick={wipeFiles} color="success" aria-label="upload cancel" component="span">
@@ -53,12 +53,12 @@ export const BtnCancel = ({ wipeFiles }) => {
     );
 }
 
-export const BtnClose = ({refetchCatalog}) => {
+export const BtnClose = ({ refetchCatalog, wipeFilesState }) => {
     const navigate = useNavigate();
-    const close = () =>{
+    const close = () => {
         navigate('/')
+        wipeFilesState()
         refetchCatalog()
-        
     }
     return (
         <div className={style.uploadBookPopUpClose}>
@@ -85,7 +85,7 @@ export const InfoBtn = ({ setInfo, Info }) => {
 }
 
 
-const handlerDeleteFromState = (FileURL, FileName, deleteDocsFromState, onDeleteDataForm) =>{
+const handlerDeleteFromState = (FileURL, FileName, deleteDocsFromState, onDeleteDataForm) => {
     URL.revokeObjectURL(FileURL)
     deleteDocsFromState(FileName)
     onDeleteDataForm()
@@ -93,17 +93,18 @@ const handlerDeleteFromState = (FileURL, FileName, deleteDocsFromState, onDelete
 
 
 
- const BtnDelete = ({FileURL, FileName, deleteDocsFromState, onDeleteDataForm}) => {
-   return <div className={style.WrapperButtonDelete}>
-       <IconButton onClick={() => handlerDeleteFromState(FileURL, FileName, deleteDocsFromState, onDeleteDataForm)} sx={{ with: "50px" }}>
-           <DeleteIcon />
-       </IconButton>
-   </div>
+const BtnDelete = ({ FileURL, FileName, deleteDocsFromState, onDeleteDataForm }) => {
+    return <div className={style.WrapperButtonDelete}>
+        <IconButton onClick={() => handlerDeleteFromState(FileURL, FileName, deleteDocsFromState, onDeleteDataForm)} sx={{ with: "50px" }}>
+            <DeleteIcon />
+        </IconButton>
+    </div>
 }
 
 
-export const BtnDeleteContainer = ({FileURL, FileName, onDeleteDataForm}) => {
-    const dispatch = useDispatch() 
+export const BtnDeleteContainer = ({ FileURL, FileName, onDeleteDataForm }) => {
+    const dispatch = useDispatch()
+
     const deleteDocsFromState = (docs) => dispatch(deleteDocs(docs))
-    return <BtnDelete onDeleteDataForm={onDeleteDataForm} FileURL={FileURL} FileName={FileName} deleteDocsFromState={deleteDocsFromState}  />
+    return <BtnDelete onDeleteDataForm={onDeleteDataForm} FileURL={FileURL} FileName={FileName} deleteDocsFromState={deleteDocsFromState} />
 }

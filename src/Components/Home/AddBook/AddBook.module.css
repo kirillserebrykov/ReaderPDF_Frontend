@@ -1,5 +1,5 @@
-.uploadBookPopUp{
-    min-width: 450px;
+.uploadBookPopUp {
+    width: 450px;
     left: 50%;
     top: 50%;
     position: absolute;
@@ -7,24 +7,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color:#2D2828;
+    background-color: #2d2828;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
-    transform: translate(-50%,-50%);
-    -webkit-transform: translate(-50%,-50%);
-    -moz-transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-    -o-transform: translate(-50%,-50%);
-    
-    
-    
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
 }
-.Info{
+.Info {
     width: 450px;
-    background-color:#2D2828;
+    background-color: #2d2828;
     position: fixed;
     z-index: -7;
     bottom: -120px;
@@ -34,40 +31,36 @@
     -moz-transition: 250ms;
     -ms-transition: 250ms;
     -o-transition: 250ms;
-    font-family: 'Karla', sans-serif;
+    font-family: "Karla", sans-serif;
     font-weight: 600;
     color: rgb(185, 180, 180);
     padding-top: 10px;
     padding-left: 10px;
     padding-bottom: 10px;
-
-
 }
-.hidden{
-    opacity:0;
-    
+.hidden {
+    opacity: 0;
 }
-.visibility{
-    opacity:1;
-    
-    
+.visibility {
+    opacity: 1;
 }
-.fileOk{
-    background:none ;
+.fileOk {
+    background: none;
     color: #4eac53;
 }
-.fileErr{
-    background:none ;
+.fileErr {
+    background: none;
     color: #ca4343;
 }
-.InfoText{}
+.InfoText {
+}
 
-.uploadBookPopUpProcess{
+.uploadBookPopUpProcess {
     margin-top: 10px;
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
 }
-.uploadBookPopUpProcessActions{
+.uploadBookPopUpProcessActions {
     width: 50px;
     height: 50px;
     border-radius: 100px;
@@ -81,34 +74,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    
-
 }
 
-
-
-
-
-.uploadBookPopUpProcessActions:after{
+.uploadBookPopUpProcessActions:after {
     content: "";
     position: absolute;
     width: 25px;
     height: 2px;
-    background-color:rgb(59, 56, 56);
+    background-color: rgb(59, 56, 56);
     top: 50%;
     left: 100%;
-
-
 }
-.Finish:after{
+.Finish:after {
     content: "";
     position: absolute;
     width: 0;
     height: 0;
 }
 
-.uploadBookPopUpTitle{
+.uploadBookPopUpTitle {
     font-weight: 700;
     font-size: 27px;
     margin-top: 10px;
@@ -116,26 +100,24 @@
     color: #ffff;
 }
 
-.DragAndDropWrap{
-  width: 100%;
-  height: 250px;
-  padding: 10px;
-  padding-top: 10px;
-  transition: 1s;
-  margin-bottom: 10px;
+.DragAndDropWrap {
+    width: 100%;
+    height: 250px;
+    padding: 10px;
+    padding-top: 10px;
+    transition: 1s;
+    margin-bottom: 10px;
 }
 
-.DragAndDrop{
+.DragAndDrop {
     width: 100%;
     height: 100%;
     border: 2px solid rgb(59, 56, 56);
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    
 }
-.filesNameWrap{
+.filesNameWrap {
     padding: 5px;
     max-width: 400px;
     text-align: center;
@@ -144,27 +126,81 @@
     white-space: nowrap;
     overflow: hidden;
     text-align: center;
-    color:#1f1d1d;
-    display: grid; 
-    grid-template-columns: 1fr  ; 
-    grid-template-rows: 1fr  ; 
-
+    color: #1f1d1d;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
 }
-.filesName{
-    font-family: 'Rajdhani', sans-serif;
+.filesName {
+    font-family: "Rajdhani", sans-serif;
     font-weight: 700;
     font-size: 23px;
-    color: #4eac53  ;
+    color: #4eac53;
     width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
-    
 }
 
-.navWrapper{
+.navWrapper {
     display: flex;
-    flex-direction:row
+    flex-direction: row;
 }
-.Input{
+.Input {
     color: rgb(175, 50, 50) !important;
+}
+@media screen and (max-width: 500px) {
+    .uploadBookPopUp {
+        position: fixed;
+        width: 101%;
+        height: 101%;
+        overflow: hidden;
+    }
+    .DragAndDropWrap {
+        width: 100%;
+        transition: 1s;
+        margin-bottom: 10px;
+        margin-top: 40%;
+        transform: translate(0%, -50%);
+        -webkit-transform: translate(0%, -50%);
+        -moz-transform: translate(0%, -50%);
+        -ms-transform: translate(0%, -50%);
+        -o-transform: translate(0%, -50%);
+    }
+    .Info {
+        
+        height: 300px;
+        background-color: #2d2828;
+        position: fixed;
+        z-index: -7;
+        bottom: 0px;
+        border-radius: 4px;
+        padding-right: 0px;
+        font-family: "Karla", sans-serif;
+        font-weight: 600;
+        color: rgb(185, 180, 180);
+        padding-left:0;
+        right: 0;
+    }
+    
+    .hidden {
+        position: absolute;
+        top: 460px;
+        left: -500px;
+    }
+    .visibility {
+        position: absolute;
+        left: 10px;
+        top: 460px;
+        opacity: 1;
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .InfoText{
+        font-size: 15px;
+    }
+    .uploadBookPopUpTitle{
+        font-size: 25px;
+    }
+
 }

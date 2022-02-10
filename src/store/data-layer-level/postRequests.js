@@ -13,7 +13,7 @@ export const postRequestsAPI = createApi({
     endpoints: (builder) => ({
       UploadFile: builder.mutation({
         query: (body) => ({
-          url: `/UploadBooks?author=${MetaDataHandler(body.Author)}&description=${MetaDataHandler(body.Description)}&page=0`,
+          url: `/UploadFile?author=${MetaDataHandler(body.Author)}&description=${MetaDataHandler(body.Description)}&page=0`,
           method: 'POST',
           body: body.formDataPDfFile,
           

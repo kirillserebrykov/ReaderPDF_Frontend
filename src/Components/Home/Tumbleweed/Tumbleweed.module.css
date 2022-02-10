@@ -1,0 +1,39 @@
+.tumbleweedWrap{
+    position: fixed;
+    overflow: hidden;
+    bottom: 100px;
+    animation: tumbleweedAnim 4s linear   0s  infinite  ;
+    -webkit-animation: tumbleweedAnim 4s linear   0s  infinite  ;
+    left: -100px;
+}
+.tumbleweedWrap img{
+    
+    animation: tumbleweedAnim 5s ease   0s  infinite  ;
+    -webkit-animation: tumbleweedAnim 5s ease   0s  infinite  ;
+    
+}
+
+@keyframes tumbleweedAnim {
+    
+    25%{
+        bottom: 0px;
+        
+    }
+    50%{
+        bottom: 0px;
+        left: 50%;
+    }
+    100%{
+        bottom: 0px;
+        width: 100px;
+        height: 100px;  
+       transform: rotate(360deg)   ;
+       -webkit-transform: rotate(360deg)   ;
+       -moz-transform: rotate(360deg)   ;
+       -ms-transform: rotate(360deg)   ;
+       -o-transform: rotate(360deg)   ;
+       left: 100%;
+      
+}
+
+}

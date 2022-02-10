@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import {Buffer} from "buffer"
 const workerHandler = (fn) => {
   onmessage = (event) => {
     postMessage(fn(event.data))

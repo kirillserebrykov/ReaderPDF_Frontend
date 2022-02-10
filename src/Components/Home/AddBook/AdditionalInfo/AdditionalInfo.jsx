@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import style from './AdditionalInfo.module.css';
 import { CustomTextField } from '../UIComponent/CustomTextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -26,7 +26,7 @@ const DeleteDuplicateOrFile = (state, FileName) => {
 }
 
 
-const Form = ({ file, setStateForms, stateForms }) => {
+const Form = ({ file, setStateForms }) => {
     const FileName = Object.keys(file).toString()
     const FileURL = Object.values(file).toString()
     const { register, reset, handleSubmit, formState: { errors } } = useForm({ mode: "onTouched", shouldFocusError: true });
@@ -54,20 +54,17 @@ const Form = ({ file, setStateForms, stateForms }) => {
             multiline={multiline} maxRows={maxRows && maxRows} />
     }
 
-
-
     return <>
         <form onBlur={handleSubmit(onSubmit)}>
             <fieldset className={style.InputSet} >
                 <legend className={style.InputSetName} > <span>{FileName}</span>  </legend>
                 <BtnDeleteContainer onDeleteDataForm={onDeleteDataForm} FileName={FileName} FileURL={FileURL} />
                 <ThemeProvider theme={outerTheme}>
-                    <ValidTextField defaultValue={FileName && FileName.replace(".pdf", "")} NameTextField="Name"  maxLengthValue="25" />
+                    <ValidTextField defaultValue={FileName && FileName.replace(".pdf", "")} NameTextField="Name" maxLengthValue="25" />
                     <ValidTextField NameTextField="Author" maxLengthValue="25" />
                     <ValidTextField NameTextField="Description" maxLengthValue="160" multiline maxRows={4} />
                 </ThemeProvider>
             </fieldset>
-
         </form>
     </>
 }
@@ -75,12 +72,10 @@ const Form = ({ file, setStateForms, stateForms }) => {
 
 
 const AdditionalInfo = ({ stateAddition, stateForms, setStateForms }) => {
-    
     const FormForFile = useMemo(() => {
-        return stateAddition.map((file, index) => <Form key={index} stateForms={stateForms} setStateForms={setStateForms} file={file} /> ) // eslint-disable-next-line react-hooks/exhaustive-deps
+        return stateAddition.map((file, index) => <Form key={index} stateForms={stateForms} setStateForms={setStateForms} file={file} />) // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [stateAddition]);
 
-    
     return (
         <section >
             <div className={`${style.AdditionalInfoWrap} ${!stateAddition[1] && style.OneFile} `}>
@@ -88,7 +83,6 @@ const AdditionalInfo = ({ stateAddition, stateForms, setStateForms }) => {
             </div>
             <nav className={style.NavFormWrap}>
                 <BtnNext RedirectTo={"Finish"} FullBorderRadius={true} />
-                
             </nav>
         </section>
     );

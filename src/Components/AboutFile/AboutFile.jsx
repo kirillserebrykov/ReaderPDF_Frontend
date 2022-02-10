@@ -1,18 +1,20 @@
 import React from 'react'
 import Header from '../Header/Header';
 import { useNavigate } from 'react-router-dom';
-import style from './Book.module.css';
-import Button from '@mui/material/Button';
+import style from './AboutFile.module.css';
 import Error from '../Error/Error';
 import LinearProgress from '@mui/material/LinearProgress';
 
-const BookUI = ({metadata, RederectToReadBook, Name, isLoading}) => {
+const AboutFileUI = ({metadata, RederectToReadBook, Name, isLoading}) => {
     return <>
     {isLoading  ? <Header name={Name ? Name : "Загрузка..."} back_button={true} /> : <Header name={Name ? Name : "Ошибка"} back_button={true} />}
     {!isLoading ?  <section className={style.wrraperBook}>
                 <div className={style.cover}>
-                    <img src="https://s1.livelib.ru/boocover/1002110803/200x305/bce2/boocover.jpg" alt="" />
-                    <Button className={style.readButton} onClick={RederectToReadBook} color="success" variant="outlined">Читать</Button>
+                    <img  src={`http://localhost:5000/cdn/CoverFile?fileName=${Name}.pdf`} alt="" />
+                    <div className={style.readBtnWrap}>
+                        <button onClick={RederectToReadBook} className={style.readBtn} ><span>Читать</span></button>
+                    </div>
+                    
             </div>
              <article className={style.description}>
                 <h2 className={style.descriptionTitle} >Автор: {metadata && metadata.author}</h2>
@@ -47,7 +49,7 @@ const AboutBook = ({ InfoBook, error, isLoading, filename, refreshHandlerName })
                             isLoading={isLoading}
                     /> 
                 </>
-                : <BookUI metadata={metadata} RederectToReadBook={RederectToReadBook} Name={Name} isLoading={isLoading} />
+                : <AboutFileUI metadata={metadata} RederectToReadBook={RederectToReadBook} Name={Name} isLoading={isLoading} />
                 }
             </>
 }

@@ -11,8 +11,11 @@ import LoadingBigData from '../Loading/LoadingBigData';
 import {NavigationPage} from "./PageNavigation/PageNavigation"
 
 
+
+
+
 const RenderSkeleton = () => {
-  return <Skeleton  variant="rectangular" width={434} height={636} />
+  return <Skeleton  variant="rectangular" width={760} height={999} />
 
 }
 
@@ -20,8 +23,8 @@ const ReadUI = ({ resultWorkWorker, currentPage, onDocumentLoadSuccess, handleCh
 
 
 
-  return <main className={style.WrraperdocumentPageForRead}>
-    <section className={style.Wrraperdocument}>
+  return <main className={style.WrapperDocumentPageForRead}>
+    <section className={style.WrapperDocument}>
       <Document className={style.Document}
         file={resultWorkWorker && { data: resultWorkWorker }}
         renderMode={"none"}
@@ -30,9 +33,10 @@ const ReadUI = ({ resultWorkWorker, currentPage, onDocumentLoadSuccess, handleCh
           cMapUrl: `//cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
           cMapPacked: false,
         }}
+        
         loading={<RenderSkeleton /> }
       >
-        <Page pageNumber={currentPage} renderMode={"canvas"} loading={<RenderSkeleton /> } />
+        <Page wrap={true} width={800} pageNumber={currentPage} renderMode={"canvas"} loading={<RenderSkeleton /> } />
       </Document>
     </section>
 
@@ -61,7 +65,7 @@ const Read = ({ FileBase64, isLoading }) => {
 
   useEffect(() => { 
     runWebworker(FileBase64 && FileBase64)
-     
+     // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [FileBase64]);
 
   const onDocumentLoadSuccess = ({ numPages }) => setNumPages(numPages)

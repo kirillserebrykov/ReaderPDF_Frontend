@@ -16,11 +16,14 @@ export const selectSlice = createSlice({
                 if(actions.payload === docs) return state.selectDoc.splice(i, 1)
                 else return state.selectDoc
             })   
+        },
+        wipeState: (state, actions) => {
+            state.selectDoc = []  
         }
     },
 })
 
 
-export const { add, deleteSelect } = selectSlice.actions
+export const { add, deleteSelect,wipeState } = selectSlice.actions
 
 export default selectSlice.reducer

@@ -12,7 +12,6 @@ export const UploadBlobFile = (updatePost, file, DATA_FORM) =>{
             const formDataPDfFile = new FormData();
             formDataPDfFile.append("file", res.data, FILE_NAME)
             await updatePost({formDataPDfFile, ...DATA_FORM}).then(res => {
-                console.log(res)
                  RES.push(res)
             } )
             return RES

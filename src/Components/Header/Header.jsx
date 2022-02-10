@@ -5,13 +5,13 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 
 
-const Header = (props) => {
+const Header = ({back_button, name}) => {
     const navigate = useNavigate();
-
+    console.log(1)
     return (
        <header className={style.Header} >
-           {props.back_button && <ArrowBackIosNewIcon onClick={() => navigate(-1)} sx={{color:"#ffff",marginLeft:"20px"}} />}
-           <h1 className={style.headers} >{props.name}</h1>
+           {back_button && <ArrowBackIosNewIcon onClick={() => navigate(-1)} sx={{color:"#ffff",marginLeft:"20px"}} />}
+           <h1 className={style.headers} >{name}</h1>
        </header>
     )
 }
