@@ -1,35 +1,33 @@
 .ButtonAdd {
-    width: 50px;
-    height: 50px;
-    border-radius: 100px;
-    background-color: #ffff;
-    color: #ffff;
-    -webkit-border-radius: 100px;
-    -moz-border-radius: 100px;
-    -ms-border-radius: 100px;
-    -o-border-radius: 100px;
-    position: fixed;
-    z-index: 4;
+	width: 50px;
+	height: 50px;
+	border-radius: 100px;
+	background-color: #ffff;
+	color: #ffff;
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 100px;
+	-ms-border-radius: 100px;
+	-o-border-radius: 100px;
+	position: fixed;
+	z-index: 4;
 }
 
 .ButtonsBackground {
-    border-radius: 100px;
-    -webkit-border-radius: 100px;
-    -moz-border-radius: 100px;
-    -ms-border-radius: 100px;
-    -o-border-radius: 100px;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-color: #78b666;
-    margin-right:20px;    
-   
+	border-radius: 100px;
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 100px;
+	-ms-border-radius: 100px;
+	-o-border-radius: 100px;
+	width: 60px;
+	height: 60px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background-color: #78b666;
+	margin-right: 20px;
 }
 
-.ButtonDelete{
-    margin-left: 90px;
+.ButtonDelete {
+	margin-left: 90px;
 }
-

@@ -1,48 +1,43 @@
-.InputSet{
-    margin-top: 10px;
-    display: grid;
-    grid-template-columns: 1fr ;
-    border:none;
-    width: 200px;
-    text-align: left;
-    position: relative;
+.InputSet {
+	margin-top: 10px;
+	display: grid;
+	grid-template-columns: 1fr;
+	border: none;
+	width: 200px;
+	text-align: left;
+	position: relative;
 }
 
-.InputSetName{
-    color: #ffff;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
-    white-space: nowrap;
-    width: 140px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    
-    
+.InputSetName {
+	color: #ffff;
+	font-size: 20px;
+	font-family: "Oswald", sans-serif;
+	white-space: nowrap;
+	width: 140px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-.AdditionalInfoWrap{
-    display: grid;
-    grid-template-columns: 1fr 1fr ;  
-    
+.AdditionalInfoWrap {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 }
 
-.OneFile{
-    grid-template-columns: 1fr ;
+.OneFile {
+	grid-template-columns: 1fr;
 }
 
 .OneFile legend {
-    text-align: center;
+	text-align: center;
 }
-.NavFormWrap{
-    display: flex;
-    justify-content: center;  
-     
-}
-
-.WrapperButtonDelete{
-    position: absolute; 
-    right: 0;
-    top: -33px;
-    z-index: 777;
+.NavFormWrap {
+	display: flex;
+	justify-content: center;
 }
 
+.WrapperButtonDelete {
+	position: absolute;
+	right: 0;
+	top: -33px;
+	z-index: 777;
+}

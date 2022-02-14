@@ -1,34 +1,44 @@
-
-
-.finishWrapper{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    
-    margin-top: 0px;
-    margin-bottom: 20px;
+.finishWrapper {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	
 }
 .finishInfo h1 {
-    color: #fff;
-    font-weight: 700;
-    font-size: 20px;   
-    text-transform: uppercase; 
+	max-width: 200px;
+	white-space: nowrap;
+	color: #fff;
+	font-weight: 700;
+	font-size: 20px;
+	text-transform: uppercase;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-.finishInfo .good{
-    color: #4eac53;
+
+
+.finishInfo .good {
+	color: #4eac53;
+	
 }
-.finishInfo .error{
-    color: rgb(202, 67, 67); 
+.finishInfo .error {
+	color: rgb(202, 67, 67);
 }
 
 .FinishTitle {
-    font-weight: 700;
-    font-size: 27px;
-    margin-top: 10px;
-    text-transform: uppercase;
-    color: #ffff;
-    margin-bottom: 10px;
+	font-weight: 700;
+	font-size: 27px;
+	margin-top: 10px;
+	text-transform: uppercase;
+	color: #ffff;
+	margin-bottom: 10px;
+}
+@media screen and (max-width: 500px) {
+	.FinishTitle {
+		font-size: 22px;
+	}
 }

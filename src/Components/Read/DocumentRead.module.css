@@ -1,11 +1,6 @@
-.WrapperDocumentPageForRead{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction:row
-    
+.WrapperDocumentPageForRead {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
 }
-
-
-
-
