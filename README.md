@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# PDF READER 
+It's my pet project. On **React/Redux** and **Node.js/Mongo DB**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![https://www.youtube.com/watch?v=XQSHXvm3q44](https://media4.giphy.com/media/r94AV9iCqjE7QDIScv/giphy.gif?cid=790b76112f87a60aeb4f86f5a496b508c217f2139a6ffef4&rid=giphy.gif&ct=g)](https://www.youtube.com/watch?v=XQSHXvm3q44)
 
-## Available Scripts
+[*link video* ](https://www.youtube.com/watch?v=gkgss86uMcE)
 
-In the project directory, you can run:
 
-### `yarn start`
+# Stack 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ **Backend**:new_moon:
+ - [Fastify](https://www.fastify.io/)
+ - [Mongodb](https://www.mongodb.com/)
+ - [Node-poppler](https://github.com/Fdawgs/node-poppler)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**Frontend**:full_moon:
 
-### `yarn test`
+ - [React](https://github.com/facebook/react)
+ - [Redux-Toolkit](https://github.com/reduxjs/redux-toolkit)
+ - [Material-UI](https://github.com/mui/material-ui)
+ - [Axios](https://github.com/axios/axios)
+ - [React-PDF](https://github.com/wojtekmaj/react-pdf)
+ - [Testing-Library](https://github.com/testing-library)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## How it works.
+**Backend**:new_moon:
+```mermaid
+graph LR
+A[Client] ----> B((/FilesAll))
+A[Client] ----> C((/FileForRead))
+A[Client] ----> D((/FileInfo))
+A[Client] ----> E((/UploadFile))
+A[Client] ----> F((/DeleteFiles))
+A[Client] ----> M((/cdn/CoverFile))
+B((/FilesAll))----> v[get files in DB ]
+ C((/FileForRead))----> 1[DownloadFile and send buffer ]
+D((/FileInfo)) ---->  14[File Info with DB   ]
+E((/UploadFile)) ---->  44[write file at DB ]
+F((/DeleteFiles)) ---->434[each file which include at array  delete  ]
+M((/cdn/CoverFile)) ----> t[if cover there is  in cache ]
+M((/cdn/CoverFile)) ----> f[ if cover there is  not in cache ]
+ t[ if cover there is  in cache ] ----> 6[get cover   in cache ]
+  f[  if cover there is  in cache ] ----> 0[get cover in buffer then save in cache then  return cover  ]
+```
+**Frontend**:full_moon:
+```mermaid
+  
+  
+graph  TD
 
-### `yarn build`
+Store[Store]  ======>  AboutFileContainer((AboutFileContainer))
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Store[Store]  ======>  HomeContainer((HomeContainer))
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Store[Store]  ======>  ReadContainer((ReadContainer))
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+App[App]  ---->  AboutFileContainer((AboutFileContainer))
 
-### `yarn eject`
+App[App]  ---->  HomeContainer((HomeContainer))
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+App[App]  ---->  ReadContainer((ReadContainer))
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ReadContainer  ---->  Read{Read}
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Read{Read}  ---->  ReadUI
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Read{Read}  ---->  Loading
 
-## Learn More
+AboutFileContainer  ---->  AboutFile
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+HomeContainer((HomeContainer))  ---->  Home{Home}
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Home{Home}  ---->  HomeUI((HomeUI))
 
-### Code Splitting
+Home{Home}  ---->  ErrorPage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+HomeUI((HomeUI))  ---->  AddBook
 
-### Analyzing the Bundle Size
+AddBook  ---->  FileDrop  ---->  AdditionalInfo  ---->  Finish
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+AboutFile{AboutFile}  ---->  ErrorPage
 
-### Making a Progressive Web App
+AboutFile{AboutFile}  ---->  UI
+  
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
